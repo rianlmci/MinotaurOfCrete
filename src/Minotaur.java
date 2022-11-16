@@ -64,6 +64,10 @@ public class Minotaur {
             stepsTaken = playerSteps;
         }
     }
+    
+    public boolean hasReachedEnd() {
+    	return bestPath.length == stepsTaken;
+    }
     // = = = = = TEST CLIENT = = = = = //
     public static void main(String[] args) {
         System.out.println("Hello world!");
