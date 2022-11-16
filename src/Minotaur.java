@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Minotaur {
     private Integer [] bestPath;
-    public static int stepsTaken;
+    private int stepsTaken;
 
     /**
      * Sets up the best path for the minotaur to take to
@@ -57,16 +57,33 @@ public class Minotaur {
     /**
      * Moves the minotaur the same amount of steps as the player
      * (aka setter for stepsTaken)
-     * @param playerSteps number of steps the player has currently taken
+     * @param playerStepsTaken number of steps the player has currently taken
      */
-    public void move(int playerSteps){
-        if (playerSteps < bestPath.length-1) {
-            stepsTaken = playerSteps;
+    public void move(int playerStepsTaken){
+        if (playerStepsTaken < bestPath.length-1) {
+            stepsTaken = playerStepsTaken;
         }
     }
     
     public boolean hasReachedEnd() {
     	return bestPath.length == stepsTaken;
+    }
+
+    public boolean reachedEnd(){
+        return bestPath.length == stepsTaken;
+    }
+
+    public String getMinotaurText(){
+        StringBuilder sb = new StringBuilder();
+
+        if (stepsTaken == bestPath.length-2){
+            sb.append("The minotaur is close to the exit! Watch out!");
+        }
+
+        else
+            sb.append("The hungry minotaur slinks around the maze.");
+
+        return sb.toString();
     }
     // = = = = = TEST CLIENT = = = = = //
     public static void main(String[] args) {
