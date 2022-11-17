@@ -11,7 +11,7 @@ public class GameMaster {
 	}
 	
 	public void updateFlavorText() {
-		GameDisplay.someComponent.setText(minotaur.getMinotaurText());
+		//GameDisplay.someComponent.setText(minotaur.getMinotaurText()); //TODO
 	}
 	
 	

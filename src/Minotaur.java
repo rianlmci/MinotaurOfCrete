@@ -1,15 +1,18 @@
 import edu.princeton.cs.algs4.BreadthFirstPaths;
 import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Stack;
 
 /**
  * The antagonist of the maze, the minotaur! It moves around the maze in a set path
  * to try and beat the player to the exit of the maze!
  */
 public class Minotaur {
-    private Integer [] bestPath;
+    private static Integer [] bestPath;
     private int stepsTaken;
 
     /**
@@ -48,8 +51,8 @@ public class Minotaur {
         Integer [] builtPath;
         Graph graph = new Graph(graphFile);
         BreadthFirstPaths bfs = new BreadthFirstPaths(graph,entranceNodeNumber);
-        ArrayList<Integer> bestPathAsList;
-        bestPathAsList = (ArrayList<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
+        Stack<Integer> bestPathAsList;
+        bestPathAsList = (Stack<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
         bestPath = new Integer[bestPathAsList.size()]; //matching size
         bestPath = bestPathAsList.toArray(bestPath); //finally, filling out the array to the best path to exit
     }
@@ -69,10 +72,6 @@ public class Minotaur {
     	return bestPath.length == stepsTaken;
     }
 
-    public boolean reachedEnd(){
-        return bestPath.length == stepsTaken;
-    }
-
     public String getMinotaurText(){
         StringBuilder sb = new StringBuilder();
 
@@ -87,6 +86,10 @@ public class Minotaur {
     }
     // = = = = = TEST CLIENT = = = = = //
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Minotaur minotaur = new Minotaur();
+        minotaur.setBestPath(MazeDifficulty.EASY);
+        for( Integer onePath : minotaur.bestPath){
+            StdOut.print(onePath + " ->");
+        }
     }
 }
