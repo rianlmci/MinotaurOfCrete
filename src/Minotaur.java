@@ -48,10 +48,9 @@ public class Minotaur {
         Stack<Integer> bestPathAsList;
         bestPathAsList = (Stack<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
         bestPath = new Integer[bestPathAsList.size()]; //matching size
-        for (int i = 0; i < bestPath.length; i++) {
+        for (int i = 0; i < bestPath.length; i++) { //finally, filling out the array to the best path to exit
             bestPath[i] = bestPathAsList.pop();
         }
-        //bestPath = bestPathAsList.toArray(bestPath); //finally, filling out the array to the best path to exit
     }
 
     /**
