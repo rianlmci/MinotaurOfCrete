@@ -1,78 +1,61 @@
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.border.BevelBorder;
-import java.awt.Font;
 
 public class GameDisplay extends JFrame {
+
+	//Display Containers
+	private static JPanel outerContainer = new JPanel(new BorderLayout());
+	private static CardLayout cardDeck = new CardLayout();
+	private static JPanel gameContent = new JPanel(cardDeck);
+
+	//Game Screens
+	private static PanelMenuItems panelMenuItems = new PanelMenuItems();
+	private static PanelTitle panelTitle = new PanelTitle();
+	private static PanelGameOverWin panelGameOverWin= new PanelGameOverWin();
+
 	public GameDisplay() {
 		setSize(1000, 700);
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JLayeredPane layeredPane = new JLayeredPane();
-		getContentPane().add(layeredPane, BorderLayout.CENTER);
+		//adds each card and their aliases to the game content panel
+		gameContent.add(panelTitle, "Title");
+		gameContent.add(panelGameOverWin, "Win");
+		getContentPane().add(panelMenuItems, BorderLayout.SOUTH);
+		setButtonLogic();
+		outerContainer.add(gameContent,SwingConstants.CENTER);
+		add(outerContainer);
+		setVisible(true);
+	}
 
-		JPanel panel_1 = new JPanel();
-//		panel_1.add(new JLabel();
-		panel_1.setBounds(0, 0, 986, 620);
-		layeredPane.add(panel_1);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(GameDisplay.class.getResource("/resources/Minotaur.png")));
-		panel_1.add(lblNewLabel);
-
-//		JLabel lblNewLabel = new JLabel("hi!");
-//		panel_1.add(lblNewLabel);
-		
-//		Label label = new Label();
-//		panel_1.add(label);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 0, 986, 620);
-		layeredPane.add(panel_2);
-
-		JLabel lblNewLabel_1 = new JLabel("You Beat the Minotaur!");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_1);
-
-		JPanel panel = new JPanel();
-		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBackground(new Color(255, 255, 255));
-		getContentPane().add(panel, BorderLayout.SOUTH);
-
-		JButton getStarted = new JButton("Get Started!");
-		getStarted.addActionListener(new ActionListener() {
+	public void setButtonLogic(){
+		//Start Button
+		panelMenuItems.startButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				layeredPane.removeAll();
-				layeredPane.add(panel_2);
-				layeredPane.repaint();
-				layeredPane.revalidate();
+				cardDeck.show(gameContent,"Win");
+				panelMenuItems.startButton.setVisible(false);
+				panelMenuItems.titleButton.setVisible(true);
 
 			}
 		});
-		getStarted.setFont(new Font("Yu Gothic", Font.PLAIN, 12));
-		getStarted.setForeground(new Color(255, 128, 255));
-		panel.add(getStarted);
+
+		//(Return to) Title Button
+		panelMenuItems.titleButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardDeck.show(gameContent,"Title");
+				panelMenuItems.startButton.setVisible(true);
+				panelMenuItems.titleButton.setVisible(false);
+			}
+		});
 	}
-
+	// = = = = = TEST CLIENT = = = = = //
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GameDisplay frame = new GameDisplay();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
 }

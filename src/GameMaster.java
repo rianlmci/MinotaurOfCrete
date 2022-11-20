@@ -1,9 +1,11 @@
+import java.awt.*;
+
 public class GameMaster {
 	
 	boolean hasMinotaurWon = false;
 	Player player = new Player();
 	Minotaur minotaur = new Minotaur();
-	GameDisplay maze = new GameDisplay();
+	static GameDisplay gameDisplay;
 	
 	
 	public boolean checkWinCondition() {
@@ -13,12 +15,18 @@ public class GameMaster {
 	public void updateFlavorText() {
 		//GameDisplay.someComponent.setText(minotaur.getMinotaurText()); //TODO
 	}
-	
-	
-	
-	
+
     // = = = = = TEST CLIENT = = = = = //
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					gameDisplay = new GameDisplay();
+					gameDisplay.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
     }
 }
