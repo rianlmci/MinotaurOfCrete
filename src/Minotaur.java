@@ -42,7 +42,6 @@ public class Minotaur {
      * @param exitNodeNumber the node number for the exit of the maze
      */
     private void setBestPathHelper(In graphFile,int entranceNodeNumber, int exitNodeNumber){
-        Integer [] builtPath;
         Graph graph = new Graph(graphFile);
         BreadthFirstPaths bfs = new BreadthFirstPaths(graph,entranceNodeNumber);
         Stack<Integer> bestPathAsList;
