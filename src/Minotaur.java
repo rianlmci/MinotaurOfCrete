@@ -44,11 +44,11 @@ public class Minotaur {
     private void setBestPathHelper(In graphFile,int entranceNodeNumber, int exitNodeNumber){
         Graph graph = new Graph(graphFile);
         BreadthFirstPaths bfs = new BreadthFirstPaths(graph,entranceNodeNumber);
-        Stack<Integer> bestPathAsList;
-        bestPathAsList = (Stack<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
-        bestPath = new Integer[bestPathAsList.size()]; //matching size
+        Stack<Integer> bestPathAsStack;
+        bestPathAsStack = (Stack<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
+        bestPath = new Integer[bestPathAsStack.size()]; //matching size
         for (int i = 0; i < bestPath.length; i++) { //finally, filling out the array to the best path to exit
-            bestPath[i] = bestPathAsList.pop();
+            bestPath[i] = bestPathAsStack.pop();
         }
     }
 
