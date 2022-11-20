@@ -23,14 +23,14 @@ public class GameDisplay extends JFrame {
 		//adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
 		gameContent.add(panelGameOverWin, "Win");
-		getContentPane().add(panelMenuItems, BorderLayout.SOUTH);
+		outerContainer.add(panelMenuItems, BorderLayout.SOUTH);
 		setButtonLogic();
 		outerContainer.add(gameContent,SwingConstants.CENTER);
 		add(outerContainer);
 		setVisible(true);
 	}
 
-	public void setButtonLogic(){
+	private void setButtonLogic(){
 		//Start Button
 		panelMenuItems.startButton.addActionListener(new ActionListener() {
 

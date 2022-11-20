@@ -1,11 +1,5 @@
-import edu.princeton.cs.algs4.BreadthFirstPaths;
-import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Stack;
 
 /**
  * The antagonist of the maze, the minotaur! It moves around the maze in a set path
@@ -25,7 +19,7 @@ public class Minotaur {
         switch (difficulty){
             case EASY:
                 graphFile = new In("src/resources/EasyGraph.txt");
-                setBestPathHelper(graphFile,1, 7);//TODO: Files, Ent/Exit.
+                setBestPathHelper(graphFile,0, 7);//TODO: Files, Ent/Exit.
                 break;
             case MEDIUM:
                 graphFile = new In("src/resources/MediumGraph.txt");
@@ -54,7 +48,10 @@ public class Minotaur {
         Stack<Integer> bestPathAsList;
         bestPathAsList = (Stack<Integer>) bfs.pathTo(exitNodeNumber); //casting to specific iterable for conversion
         bestPath = new Integer[bestPathAsList.size()]; //matching size
-        bestPath = bestPathAsList.toArray(bestPath); //finally, filling out the array to the best path to exit
+        for (int i = 0; i < bestPath.length; i++) {
+            bestPath[i] = bestPathAsList.pop();
+        }
+        //bestPath = bestPathAsList.toArray(bestPath); //finally, filling out the array to the best path to exit
     }
 
     /**
@@ -89,7 +86,7 @@ public class Minotaur {
         Minotaur minotaur = new Minotaur();
         minotaur.setBestPath(MazeDifficulty.EASY);
         for( Integer onePath : minotaur.bestPath){
-            StdOut.print(onePath + " ->");
+            StdOut.print(onePath + " -> ");
         }
     }
 }
