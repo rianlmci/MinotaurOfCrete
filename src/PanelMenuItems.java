@@ -24,7 +24,7 @@ public class PanelMenuItems extends JPanel {
         undoButton.setVisible(false);
 
         //ResetButton
-        resetButton = new JButton("Undo");
+        resetButton = new JButton("Reset");
         resetButton.setFont(new Font("Yu Gothic", Font.PLAIN, 12));
         resetButton.setForeground(new Color(255, 128, 255));
         resetButton.setVisible(false);

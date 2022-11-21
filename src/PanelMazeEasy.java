@@ -16,12 +16,7 @@ public class PanelMazeEasy extends JPanel {
         X_NEG_3_Y_1.setHorizontalAlignment(SwingConstants.CENTER);
         
         JButton BTN_NEG_3_1 = new JButton("Go Here");
-        BTN_NEG_3_1.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		
-        	}
-        });
+
         BTN_NEG_3_1.setBorder(null);
         BTN_NEG_3_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
         Panel_Neg_3_1.add(BTN_NEG_3_1, BorderLayout.SOUTH);

@@ -14,6 +14,7 @@ public class GameDisplay extends JFrame {
 	private static PanelMenuItems panelMenuItems = new PanelMenuItems();
 	private static PanelTitle panelTitle = new PanelTitle();
 	private static PanelGameOverWin panelGameOverWin= new PanelGameOverWin();
+	private static PanelMazeEasy panelMazeEasy = new PanelMazeEasy();
 
 	public GameDisplay() {
 		setSize(1000, 700);
@@ -22,6 +23,7 @@ public class GameDisplay extends JFrame {
 
 		//adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
+		gameContent.add(panelMazeEasy, "Easy");
 		gameContent.add(panelGameOverWin, "Win");
 		outerContainer.add(panelMenuItems, BorderLayout.SOUTH);
 		setButtonLogic();
@@ -36,9 +38,11 @@ public class GameDisplay extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardDeck.show(gameContent,"Win");
+				cardDeck.show(gameContent,"Easy");
 				panelMenuItems.startButton.setVisible(false);
-				panelMenuItems.titleButton.setVisible(true);
+//				panelMenuItems.titleButton.setVisible(true);
+				panelMenuItems.resetButton.setVisible(true);
+				panelMenuItems.undoButton.setVisible(true);
 
 			}
 		});

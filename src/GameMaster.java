@@ -7,7 +7,6 @@ public class GameMaster {
 	Minotaur minotaur = new Minotaur();
 	static GameDisplay gameDisplay;
 	
-	
 	public boolean checkWinCondition() {
 		return minotaur.hasReachedEnd();
 	}
