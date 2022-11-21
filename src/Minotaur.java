@@ -83,7 +83,7 @@ public class Minotaur {
     public static void main(String[] args) {
         Minotaur minotaur = new Minotaur();
         minotaur.setBestPath(MazeDifficulty.EASY);
-        for( Integer onePath : minotaur.bestPath){
+        for(Integer onePath : minotaur.bestPath){
             StdOut.print(onePath + " -> ");
         }
     }
