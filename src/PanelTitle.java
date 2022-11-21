@@ -1,5 +1,8 @@
 import javax.swing.*;
 
+/**
+ * Title screen in the GUI.
+ */
 public class PanelTitle extends JPanel {
     PanelTitle(){
         setBounds(0, 0, 986, 620);

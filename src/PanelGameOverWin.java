@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Game over screen in the GUI.
+ */
 public class PanelGameOverWin extends JPanel {
     PanelGameOverWin(){
         setBounds(0, 0, 986, 620);

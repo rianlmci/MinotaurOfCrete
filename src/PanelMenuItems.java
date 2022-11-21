@@ -2,6 +2,10 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 
+/**
+ * The bottom panel which contains all the menu buttons
+ * for the game.
+ */
 public class PanelMenuItems extends JPanel {
     public JButton startButton;
     public JButton undoButton;

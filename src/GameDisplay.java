@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Class in charge of all the GUI components of the minotaur game.
+ */
 public class GameDisplay extends JFrame {
 
 	//Display Containers
@@ -18,7 +21,6 @@ public class GameDisplay extends JFrame {
 
 	public GameDisplay() {
 		setSize(1000, 700);
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//adds each card and their aliases to the game content panel
@@ -32,6 +34,9 @@ public class GameDisplay extends JFrame {
 		setVisible(true);
 	}
 
+	/**
+	 * Creates logic for each of the menu buttons
+	 */
 	private void setButtonLogic(){
 		//Start Button
 		panelMenuItems.startButton.addActionListener(new ActionListener() {
@@ -40,7 +45,6 @@ public class GameDisplay extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				cardDeck.show(gameContent,"Easy");
 				panelMenuItems.startButton.setVisible(false);
-//				panelMenuItems.titleButton.setVisible(true);
 				panelMenuItems.resetButton.setVisible(true);
 				panelMenuItems.undoButton.setVisible(true);
 

@@ -62,11 +62,17 @@ public class Minotaur {
             stepsTaken = playerStepsTaken;
         }
     }
-    
+
+    /**
+     * @return in minotaur has reached the end of the maze.
+     */
     public boolean hasReachedEnd() {
     	return bestPath.length == stepsTaken;
     }
 
+    /**
+     * @return feedback dialogue of the minotaur's status in the maze.
+     */
     public String getMinotaurText(){
         StringBuilder sb = new StringBuilder();
 

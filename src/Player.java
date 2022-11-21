@@ -1,5 +1,8 @@
 import edu.princeton.cs.algs4.Stack;
 
+/**
+ * Player who explores the maze and tries to escape it!
+ */
 public class Player {
 	Stack<Integer> nodesVisited = new Stack<>();
 	Integer currentNode;

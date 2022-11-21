@@ -5,6 +5,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Easy difficulty maze screen in the GUI.
+ */
 public class PanelMazeEasy extends JPanel {
     PanelMazeEasy(){
         setLayout(new GridLayout(3,7));
