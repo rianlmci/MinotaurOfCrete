@@ -61,13 +61,12 @@ public class GameDisplay extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				panelMazeEasy.updateMazeGUI();
+				updateMazeGm();
 				cardDeck.show(gameContent, "Easy");
 				minotaurTextLabel.setVisible(true);
 				panelMenuItems.startButton.setVisible(false);
 				panelMenuItems.resetButton.setVisible(true);
 				panelMenuItems.undoButton.setVisible(true);
-
 			}
 		});
 
@@ -76,6 +75,7 @@ public class GameDisplay extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				updateMazeGm();
 				cardDeck.show(gameContent, "Title");
 				panelMenuItems.startButton.setVisible(true);
 				panelMenuItems.titleButton.setVisible(false);
@@ -87,12 +87,10 @@ public class GameDisplay extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//gm = panelMazeEasy.currentGM;
-
 				if(!gm.player.nodesVisited.isEmpty()) {
+					System.out.println("is not empty");
 					gm.player.moveBackward();
 					gm.minotaur.move(gm.player.stepsTaken);
-					updateMazeGm();
 				}
 
 				//TODO Remove text when bugs are fixed!
@@ -105,7 +103,7 @@ public class GameDisplay extends JFrame {
 						gm.minotaur.stepsTaken,
 						gm.minotaur.bestPath.length,
 						gm.minotaur.hasReachedEnd());
-
+				updateMazeGm();
 				minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
 
 			}

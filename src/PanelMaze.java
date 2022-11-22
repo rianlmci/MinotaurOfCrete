@@ -283,7 +283,9 @@ public class PanelMaze extends JPanel {
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.
                             for (Integer onePoint: thisCellsContent.getAdjacentPoints()) {
-                                if (thisButton.getBackground() != Color.ORANGE && onePoint == currentGM.player.nodesVisited.peek()){
+                                if (thisButton.getBackground() != Color.ORANGE &&
+                                        !currentGM.player.nodesVisited.isEmpty() &&
+                                        onePoint== currentGM.player.nodesVisited.peek()){
                                     allPanels[i][j].getComponent(0).setEnabled(true);
                                 }
                             }

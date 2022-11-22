@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="Added doc comments to every class">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="More documentation, added logic for game over/win&#10;currenty using undo does not update the gm properties properly.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameMaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Minotaur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelGameOverWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelGameOverWin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PanelMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelMenuItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMenuItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelTitle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +88,7 @@
       <workItem from="1669072462446" duration="3775000" />
       <workItem from="1669077875685" duration="3257000" />
       <workItem from="1669134190866" duration="8594000" />
-      <workItem from="1669143218808" duration="11614000" />
+      <workItem from="1669143218808" duration="12497000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1668637073728</created>
@@ -127,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669073681761</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="More documentation, added logic for game over/win&#10;currenty using undo does not update the gm properties properly.">
+      <created>1669155256194</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669155256194</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +147,8 @@
     <MESSAGE value="Minotaur change" />
     <MESSAGE value="Updates from last part of pair programming meeting" />
     <MESSAGE value="Added doc comments to every class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added doc comments to every class" />
+    <MESSAGE value="More documentation, added logic for game over/win&#10;currenty using undo does not update the gm properties properly." />
+    <option name="LAST_COMMIT_MESSAGE" value="More documentation, added logic for game over/win&#10;currenty using undo does not update the gm properties properly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
