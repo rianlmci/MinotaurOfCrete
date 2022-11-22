@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="Added doc comments to every class">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameMaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Minotaur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelGameOverWin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelGameOverWin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMaze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelMenuItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMenuItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelTitle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HasLJxUErIFh5e8NphQosCxg5Y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/owner/IdeaProjects/MinotaurOfCrete/lib&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\owner\IdeaProjects\MinotaurOfCrete\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.GameMaster">
+    <configuration name="GameMaster" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameMaster" />
+      <module name="MinotaurOfCrete" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Minotaur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Minotaur" />
+      <module name="MinotaurOfCrete" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameMaster" />
+        <item itemvalue="Application.Minotaur" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="" />
+      <created>1668534475656</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668534475656</updated>
+      <workItem from="1668534478291" duration="8812000" />
+      <workItem from="1668551573769" duration="1215000" />
+      <workItem from="1668627557141" duration="12000" />
+      <workItem from="1668636522868" duration="5704000" />
+      <workItem from="1668645779624" duration="963000" />
+      <workItem from="1669062393530" duration="21000" />
+      <workItem from="1669068514833" duration="370000" />
+      <workItem from="1669069430189" duration="690000" />
+      <workItem from="1669072462446" duration="3775000" />
+      <workItem from="1669077875685" duration="3257000" />
+      <workItem from="1669134190866" duration="8594000" />
+      <workItem from="1669143218808" duration="11614000" />
+    </task>
+    <task id="LOCAL-00001" summary="Test">
+      <created>1668637073728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668637073728</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Minotaur change">
+      <created>1668639621612</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668639621612</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updates from last part of pair programming meeting">
+      <created>1668645830547</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668645830547</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added doc comments to every class">
+      <created>1669073681761</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669073681761</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Test" />
+    <MESSAGE value="Minotaur change" />
+    <MESSAGE value="Updates from last part of pair programming meeting" />
+    <MESSAGE value="Added doc comments to every class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added doc comments to every class" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/GameMaster.java</url>
+          <line>21</line>
+          <properties method="run">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

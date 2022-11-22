@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.Stack;
 public class Player {
 	Stack<Integer> nodesVisited = new Stack<>();
 	Integer currentNode;
-	int stepsTaken;
+	protected double stepsTaken;
 
 	// methods
 	public boolean hasVisited(Integer nodeToCheck){
@@ -20,12 +20,12 @@ public class Player {
 	}
 	public void moveForward(Integer nextNode) {
 		nodesVisited.push(nextNode);
-		stepsTaken++;
+		stepsTaken = nodesVisited.size();
 	}
 
 	public void moveBackward() {
 		nodesVisited.pop();
-		stepsTaken--;
+		stepsTaken = nodesVisited.size();
 	}
 
 }
