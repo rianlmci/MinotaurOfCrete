@@ -70,13 +70,14 @@ public class PanelMazeEasy extends JPanel {
                 cellButton.setBackground(Color.BLACK);
                 cellButton.setForeground(Color.WHITE);
                 cellButton.setBorder(null);
-                mapButtons.put(cellButton, allCellContents[i][j]);
+                mapButtons.put(cellButton, allCellContents[i][j]); //add key value pair for later use
 
                 //if this cell is the starting point's cell, mark it as orange.
                 if (allCellContents[i][j]. isVertex() && Integer.parseInt(allCellContents[i][j].getCellText()) == mazeStartingPoint){
                     cellButton.setBackground(Color.ORANGE);
                 }
 
+                //if this cell is not a vertex, don't let the user click on it.
                 if (!allCellContents[i][j].isVertex()){
                     cellButton.setEnabled(false);
                 }
@@ -101,10 +102,11 @@ public class PanelMazeEasy extends JPanel {
                 });
 
             }
-                //sets up Jpanel for this cell in the grid...
+
+                //finally, sets up JPanel with this button that will go inside the grid...
                 JPanel cellPanel = new JPanel(new BorderLayout());
-                allPanels[i][j] = cellPanel;
-                cellPanel.add(cellButton, SwingConstants.CENTER);
+                allPanels[i][j] = cellPanel; //add to 2D array for later reference
+                cellPanel.add(cellButton, SwingConstants.CENTER); //adds button to this panel
                 add(cellPanel); //adds to the Maze Grid
             }
         }
@@ -141,7 +143,6 @@ public class PanelMazeEasy extends JPanel {
 
         }
     }
-
 
     PanelMazeEasy(){
         gm.player.nodesVisited.push(mazeStartingPoint);
