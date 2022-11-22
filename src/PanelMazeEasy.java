@@ -73,7 +73,7 @@ public class PanelMazeEasy extends JPanel {
                 mapButtons.put(cellButton, allCellContents[i][j]); //add key value pair for later use
 
                 //if this cell is the starting point's cell, mark it as orange.
-                if (allCellContents[i][j]. isVertex() && Integer.parseInt(allCellContents[i][j].getCellText()) == mazeStartingPoint){
+                if (allCellContents[i][j].isVertex() && Integer.parseInt(allCellContents[i][j].getCellText()) == mazeStartingPoint){
                     cellButton.setBackground(Color.ORANGE);
                 }
 
