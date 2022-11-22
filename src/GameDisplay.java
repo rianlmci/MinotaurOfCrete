@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
  * Class in charge of all the GUI components of the minotaur game.
  */
 public class GameDisplay extends JFrame {
+	public GameMaster gm = new GameMaster();
 
 	//Display Containers
 	private static JPanel outerContainer = new JPanel(new BorderLayout());
@@ -17,7 +18,9 @@ public class GameDisplay extends JFrame {
 	private static PanelMenuItems panelMenuItems = new PanelMenuItems();
 	private static PanelTitle panelTitle = new PanelTitle();
 	private static PanelGameOverWin panelGameOverWin= new PanelGameOverWin();
-	private static PanelMazeEasy panelMazeEasy = new PanelMazeEasy();
+	private static PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
+	//private static PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM);
+	//private static PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD);
 
 	public GameDisplay() {
 		setSize(1000, 700);
@@ -32,6 +35,9 @@ public class GameDisplay extends JFrame {
 		setMenuButtonsLogic();
 		outerContainer.add(gameContent,SwingConstants.CENTER);
 		add(outerContainer);
+		panelMazeEasy.updateMasterGm();
+		//panelMazeMedium.updateMasterGm();
+		//panelMazeHard.updateMasterGm();
 		setVisible(true);
 	}
 

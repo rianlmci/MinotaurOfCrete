@@ -9,8 +9,22 @@ import java.util.Map;
 /**
  * Easy difficulty maze screen in the GUI.
  */
-public class PanelMazeEasy extends JPanel {
-    private GameMaster gm = new GameMaster();
+public class PanelMaze extends JPanel {
+    private GameMaster currentGM = new GameMaster();
+
+    /**
+     * Updates the GameContainer's GM
+     */
+    public void updateMasterGm(){
+        ((GameDisplay)this.
+                getParent(). /*JPanel*/
+                getParent(). /*JPanel*/
+                getParent(). /*JPanel*/
+                getParent(). /*LayeredPane*/
+                getParent(). /*JRootPane*/
+                getParent() /*GameDisplay*/).gm = currentGM;
+    }
+
 
 
    /*
@@ -54,13 +68,12 @@ public class PanelMazeEasy extends JPanel {
             }
     };
 
-    int mazeStartingPoint;
-    int mazeEndingPoint;
     JPanel allPanels[][];
-    Font cellFont = new Font("Tahoma", Font.PLAIN, 12);
+    int mazeStartingPoint = 0;
+    int mazeEndingPoint;
     private Map<JButton, GridCellContent> mapButtons = new HashMap<JButton, GridCellContent>((allCellContents.length * allCellContents[0].length));
     private void createPanelsFromGridCells() {
-        gm.minotaur.setBestPath(MazeDifficulty.EASY);
+        Font cellFont = new Font("Tahoma", Font.PLAIN, 12);
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
         for (int i = 0; i < allCellContents.length; i++) {
             for (int j = 0; j < allCellContents[i].length; j++) {
@@ -87,20 +100,22 @@ public class PanelMazeEasy extends JPanel {
                         public void actionPerformed(ActionEvent e) {
                             Object source = e.getSource();
                             if(source instanceof JButton){
-                                GridCellContent thisContent = mapButtons.get(cellButton);
+                                GridCellContent thisContent = mapButtons.get(source);
+                                JButton thisCellButton = (JButton) source;
                                 //is the button a connector, whitespace, or a vertex?
                                 if (thisContent.isVertex()) {
-                                    //if the player hasn't visited this node, mark it as orange, update grid
-                                    if(!gm.player.hasVisited(Integer.parseInt(thisContent.getCellText()))) {
-                                        gm.player.moveForward(Integer.parseInt(thisContent.getCellText()));
-                                        gm.minotaur.move(gm.player.stepsTaken);
+
+                                        //if the player hasn't visited this node, mark it as orange, update grid
+                                        if (!currentGM.player.hasVisited(Integer.parseInt(thisContent.getCellText()))) {
+                                            currentGM.player.moveForward(Integer.parseInt(thisContent.getCellText()));
+                                            currentGM.minotaur.move(currentGM.player.stepsTaken);
+                                            updateMasterGm();
+                                        }
                                     }
                                 }
-                            }
                             updateMazeGUI();
                         }
                 });
-
             }
 
                 //finally, sets up JPanel with this button that will go inside the grid...
@@ -110,7 +125,7 @@ public class PanelMazeEasy extends JPanel {
                 add(cellPanel); //adds to the Maze Grid
             }
         }
-        updateMazeGUI();
+        //updateMazeGUI();
     }
 
     private void updateMazeGUI() {
@@ -123,17 +138,16 @@ public class PanelMazeEasy extends JPanel {
 
                     try {
                         Integer.parseInt(thisButton.getText());
-                        if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
-                            allPanels[i][j].getComponent(0).setBackground(Color.ORANGE);
-                        }
-
-                        for (Integer onePoint: thisContent.getAdjacentPoints()) {
-                            if (thisButton.getBackground() != Color.ORANGE && onePoint == gm.player.nodesVisited.peek()){
-                                allPanels[i][j].getComponent(0).setEnabled(true);
+                            if (currentGM.player.hasVisited(Integer.parseInt(thisButton.getText()))){
+                                allPanels[i][j].getComponent(0).setBackground(Color.ORANGE);
                             }
-                        }
-                    }
 
+                            for (Integer onePoint: thisContent.getAdjacentPoints()) {
+                                if (thisButton.getBackground() != Color.ORANGE && onePoint == currentGM.player.nodesVisited.peek()){
+                                    allPanels[i][j].getComponent(0).setEnabled(true);
+                                }
+                            }
+                    }
                     catch (NumberFormatException nfe) {
 
                     }
@@ -144,8 +158,10 @@ public class PanelMazeEasy extends JPanel {
         }
     }
 
-    PanelMazeEasy(){
-        gm.player.nodesVisited.push(mazeStartingPoint);
+    PanelMaze(MazeDifficulty difficulty){
+        currentGM.minotaur.setBestPath(difficulty);
+        currentGM.player.nodesVisited.push(mazeStartingPoint);
+
         setLayout(new GridLayout(3,7));
         createPanelsFromGridCells();
 
