@@ -67,7 +67,8 @@ public class PanelMazeEasy extends JPanel {
                 //set up button for this cell in the grid...
                 JButton cellButton = new JButton(allCellContents[i][j].getCellText());
                 cellButton.setFont(cellFont);
-                cellButton.setBackground(Color.WHITE);
+                cellButton.setBackground(Color.BLACK);
+                cellButton.setForeground(Color.WHITE);
                 cellButton.setBorder(null);
                 mapButtons.put(cellButton, allCellContents[i][j]);
 
