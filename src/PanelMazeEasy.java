@@ -9,12 +9,24 @@ import java.awt.event.ActionEvent;
  * Easy difficulty maze screen in the GUI.
  */
 public class PanelMazeEasy extends JPanel {
+    String [] buttonText = { "1", "-", "0", " ", "7", "-", "6",
+                             "|", " ", "|", "/", "|", "/", "|",
+                             "2", " ", "3", "-", "4", " ", "5"
+    };
+    int value = 0;
+    Font cellFont = new Font("Tahoma", Font.PLAIN, 12);
+
     PanelMazeEasy(){
         setLayout(new GridLayout(3,7));
-        
+        for (String buttonString: buttonText) {
+            cellCreator(buttonString);
+        }
+
+        /*
+        //(3 -1)
         JPanel Panel_Neg_3_1 = new JPanel();
         add(Panel_Neg_3_1);
-        Panel_Neg_3_1.setLayout(new BorderLayout(0, 0));
+        Panel_Neg_3_1.setLayout(new BorderLayout());
         
         JButton BTN_NEG_3_1 = new JButton("1");
         BTN_NEG_3_1.addActionListener(new ActionListener() {
@@ -28,7 +40,7 @@ public class PanelMazeEasy extends JPanel {
         
         JPanel Panel_Neg_2_1 = new JPanel();
         add(Panel_Neg_2_1);
-        Panel_Neg_2_1.setLayout(new BorderLayout(0, 0));
+        Panel_Neg_2_1.setLayout(new BorderLayout());
         
         JButton BTN_NEG_2_1 = new JButton("-");
         BTN_NEG_2_1.addActionListener(new ActionListener() {
@@ -221,5 +233,31 @@ public class PanelMazeEasy extends JPanel {
         BTN_3_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
         BTN_3_NEG_1.setBorder(null);
         Panel_3_Neg_1.add(BTN_3_NEG_1, BorderLayout.CENTER);
+        */
+
+    }
+    //TODO
+    private void cellCreator(String cellText){
+
+        JPanel newCell = new JPanel(new BorderLayout());
+        JButton cellButton = new JButton(cellText);
+        cellButton.setBorder(null);
+        cellButton.setFont(cellFont);
+
+        try {
+            Integer.parseInt(cellText);
+        }
+
+        catch (NumberFormatException nfe) {
+            cellButton.setEnabled(false);
+        }
+        cellButton.putClientProperty(cellText,value++);
+        cellButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+        newCell.add(cellButton);
+        add(newCell);
     }
 }
