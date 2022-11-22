@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class PanelMazeEasy extends JPanel {
     private GameMaster gm = new GameMaster();
-    Integer mazeStartingPoint = 0;
+
 
    /*
    * = = = = = Graph as Text = = = = =
@@ -54,11 +54,11 @@ public class PanelMazeEasy extends JPanel {
             }
     };
 
+    int mazeStartingPoint;
+    int mazeEndingPoint;
     JPanel allPanels[][];
-
     Font cellFont = new Font("Tahoma", Font.PLAIN, 12);
-    private Map<JButton, GridCellContent> mapButtons = new HashMap<JButton, GridCellContent>(21);
-
+    private Map<JButton, GridCellContent> mapButtons = new HashMap<JButton, GridCellContent>((allCellContents.length * allCellContents[0].length));
     private void createPanelsFromGridCells() {
         gm.minotaur.setBestPath(MazeDifficulty.EASY);
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
