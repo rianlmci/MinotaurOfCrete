@@ -1,263 +1,157 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Easy difficulty maze screen in the GUI.
  */
 public class PanelMazeEasy extends JPanel {
-    String [] buttonText = { "1", "-", "0", " ", "7", "-", "6",
-                             "|", " ", "|", "/", "|", "/", "|",
-                             "2", " ", "3", "-", "4", " ", "5"
+    private GameMaster gm = new GameMaster();
+    Integer mazeStartingPoint = 0;
+
+   /*
+   * = = = = = Graph as Text = = = = =
+   *       0    1    2    3    4    5    6  [column k]
+   * 0     1    -    0   " "   7    -    6
+   * 1     |   " "   |    /    |    /    |
+   * 2     2   " "   3    -    4   " "   5
+   * [row i] " " is whitespace!
+   */
+
+    GridCellContent [][] allCellContents = {
+            /*Row 0*/{
+            new GridCellContent("1"), /*[0][0]*/
+            new GridCellContent("-"), /*[0][1]*/
+            new GridCellContent("0"), /*[0][2]*/
+            new GridCellContent(" "), /*[0][3]*/
+            new GridCellContent("7"), /*[0][4]*/
+            new GridCellContent("-"), /*[0][5]*/
+            new GridCellContent("6"), /*[0][6]*/
+            },
+
+            /*Row 1*/{
+            new GridCellContent("|"), /*[1][0]*/
+            new GridCellContent(" "), /*[1][1]*/
+            new GridCellContent("|"), /*[1][2]*/
+            new GridCellContent("/"), /*[1][3]*/
+            new GridCellContent("|"), /*[1][4]*/
+            new GridCellContent("/"), /*[1][5]*/
+            new GridCellContent("|"), /*[1][6]*/
+            },
+
+            /*Row 2*/{
+            new GridCellContent("2"), /*[2][0]*/
+            new GridCellContent(" "), /*[2][1]*/
+            new GridCellContent("3"), /*[2][2]*/
+            new GridCellContent("-"), /*[2][3]*/
+            new GridCellContent("4"), /*[2][4]*/
+            new GridCellContent(" "), /*[2][5]*/
+            new GridCellContent("5"), /*[2][6]*/
+            }
     };
-    int value = 0;
+
+    JPanel allPanels[][];
+
     Font cellFont = new Font("Tahoma", Font.PLAIN, 12);
+    private Map<JButton, GridCellContent> mapButtons = new HashMap<JButton, GridCellContent>(21);
+
+    private void createPanelsFromGridCells() {
+        gm.minotaur.setBestPath(MazeDifficulty.EASY);
+        allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
+        for (int i = 0; i < allCellContents.length; i++) {
+            for (int j = 0; j < allCellContents[i].length; j++) {
+                //set up button for this cell in the grid...
+                JButton cellButton = new JButton(allCellContents[i][j].getCellText());
+                cellButton.setFont(cellFont);
+                cellButton.setBackground(Color.WHITE);
+                cellButton.setBorder(null);
+                mapButtons.put(cellButton, allCellContents[i][j]);
+
+                //if this cell is the starting point's cell, mark it as orange.
+                if (allCellContents[i][j]. isVertex() && Integer.parseInt(allCellContents[i][j].getCellText()) == mazeStartingPoint){
+                    cellButton.setBackground(Color.ORANGE);
+                }
+
+                if (!allCellContents[i][j].isVertex()){
+                    cellButton.setEnabled(false);
+                }
+
+                else{
+                    cellButton.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            Object source = e.getSource();
+                            if(source instanceof JButton){
+                                GridCellContent thisContent = mapButtons.get(cellButton);
+                                //is the button a connector, whitespace, or a vertex?
+                                if (thisContent.isVertex()) {
+                                    //if the player hasn't visited this node, mark it as orange, update grid
+                                    if(!gm.player.hasVisited(Integer.parseInt(thisContent.getCellText()))) {
+                                        gm.player.moveForward(Integer.parseInt(thisContent.getCellText()));
+                                        gm.minotaur.move(gm.player.stepsTaken);
+                                    }
+                                }
+                            }
+                            updateMazeGUI();
+                        }
+                });
+
+            }
+                //sets up Jpanel for this cell in the grid...
+                JPanel cellPanel = new JPanel(new BorderLayout());
+                allPanels[i][j] = cellPanel;
+                cellPanel.add(cellButton, SwingConstants.CENTER);
+                add(cellPanel); //adds to the Maze Grid
+            }
+        }
+        updateMazeGUI();
+    }
+
+    private void updateMazeGUI() {
+        for (int i = 0; i < allPanels.length; i++) {
+            for (int j = 0; j < allPanels[i].length; j++) {
+                if(allPanels[i][j].getComponent(0) instanceof JButton){
+                    GridCellContent thisContent = mapButtons.get((JButton)allPanels[i][j].getComponent(0));
+                    JButton thisButton = (JButton) allPanels[i][j].getComponent(0);
+                    allPanels[i][j].getComponent(0).setEnabled(false);
+
+                    try {
+                        Integer.parseInt(thisButton.getText());
+                        if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
+                            allPanels[i][j].getComponent(0).setBackground(Color.ORANGE);
+                        }
+
+                        for (Integer onePoint: thisContent.getAdjacentPoints()) {
+                            if (thisButton.getBackground() != Color.ORANGE && onePoint == gm.player.nodesVisited.peek()){
+                                allPanels[i][j].getComponent(0).setEnabled(true);
+                            }
+                        }
+                    }
+
+                    catch (NumberFormatException nfe) {
+
+                    }
+
+                };
+            }
+
+        }
+    }
+
 
     PanelMazeEasy(){
+        gm.player.nodesVisited.push(mazeStartingPoint);
         setLayout(new GridLayout(3,7));
-        for (String buttonString: buttonText) {
-            cellCreator(buttonString);
-        }
+        createPanelsFromGridCells();
 
-        /*
-        //(3 -1)
-        JPanel Panel_Neg_3_1 = new JPanel();
-        add(Panel_Neg_3_1);
-        Panel_Neg_3_1.setLayout(new BorderLayout());
-        
-        JButton BTN_NEG_3_1 = new JButton("1");
-        BTN_NEG_3_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-
-        BTN_NEG_3_1.setBorder(null);
-        BTN_NEG_3_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        Panel_Neg_3_1.add(BTN_NEG_3_1, BorderLayout.CENTER);
-        
-        JPanel Panel_Neg_2_1 = new JPanel();
-        add(Panel_Neg_2_1);
-        Panel_Neg_2_1.setLayout(new BorderLayout());
-        
-        JButton BTN_NEG_2_1 = new JButton("-");
-        BTN_NEG_2_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        BTN_NEG_2_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_2_1.setBorder(null);
-        Panel_Neg_2_1.add(BTN_NEG_2_1);
-        
-        JPanel Panel_Neg_1_1 = new JPanel();
-        add(Panel_Neg_1_1);
-        Panel_Neg_1_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_1_1 = new JButton("0");
-        BTN_NEG_1_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_1_1.setBorder(null);
-        Panel_Neg_1_1.add(BTN_NEG_1_1, BorderLayout.CENTER);
-        
-        JPanel Panel_0_1 = new JPanel();
-        add(Panel_0_1);
-        Panel_0_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_0_1 = new JButton("");
-        BTN_0_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        BTN_0_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_0_1.setBorder(null);
-        Panel_0_1.add(BTN_0_1, BorderLayout.CENTER);
-        
-        JPanel Panel_1_1 = new JPanel();
-        add(Panel_1_1);
-        Panel_1_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_1_1 = new JButton("7");
-        BTN_1_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        BTN_1_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_1_1.setBorder(null);
-        Panel_1_1.add(BTN_1_1);
-        
-        JPanel Panel_2_1 = new JPanel();
-        add(Panel_2_1);
-        Panel_2_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_2_1 = new JButton("-");
-        BTN_2_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_2_1.setBorder(null);
-        Panel_2_1.add(BTN_2_1, BorderLayout.CENTER);
-        
-        JPanel Panel_3_1 = new JPanel();
-        add(Panel_3_1);
-        Panel_3_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_3_1 = new JButton("6");
-        BTN_3_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_3_1.setBorder(null);
-        Panel_3_1.add(BTN_3_1, BorderLayout.CENTER);
-        
-        JPanel Panel_Neg_3_0 = new JPanel();
-        add(Panel_Neg_3_0);
-        Panel_Neg_3_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_3_0 = new JButton("|");
-        BTN_NEG_3_0.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        BTN_NEG_3_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_3_0.setBorder(null);
-        Panel_Neg_3_0.add(BTN_NEG_3_0);
-        
-        JPanel Panel_Neg_2_0 = new JPanel();
-        add(Panel_Neg_2_0);
-        Panel_Neg_2_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_2_0 = new JButton("");
-        BTN_NEG_2_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_2_0.setBorder(null);
-        Panel_Neg_2_0.add(BTN_NEG_2_0);
-        
-        JPanel Panel_Neg_1_0 = new JPanel();
-        add(Panel_Neg_1_0);
-        Panel_Neg_1_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_1_0 = new JButton("|");
-        BTN_NEG_1_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_1_0.setBorder(null);
-        Panel_Neg_1_0.add(BTN_NEG_1_0);
-        
-        JPanel Panel_0_0 = new JPanel();
-        add(Panel_0_0);
-        Panel_0_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_0_0 = new JButton("/");
-        BTN_0_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_0_0.setBorder(null);
-        Panel_0_0.add(BTN_0_0, BorderLayout.CENTER);
-        
-        JPanel Panel_1_0 = new JPanel();
-        add(Panel_1_0);
-        Panel_1_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_1_0 = new JButton("|");
-        BTN_1_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_1_0.setBorder(null);
-        Panel_1_0.add(BTN_1_0, BorderLayout.CENTER);
-        
-        JPanel Panel_2_0 = new JPanel();
-        add(Panel_2_0);
-        Panel_2_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_2_0 = new JButton("/");
-        BTN_2_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_2_0.setBorder(null);
-        Panel_2_0.add(BTN_2_0, BorderLayout.CENTER);
-        
-        JPanel Panel_3_0 = new JPanel();
-        add(Panel_3_0);
-        Panel_3_0.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_3_0 = new JButton("|");
-        BTN_3_0.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_3_0.setBorder(null);
-        Panel_3_0.add(BTN_3_0, BorderLayout.CENTER);
-        
-        JPanel Panel_Neg_3_Neg_1 = new JPanel();
-        add(Panel_Neg_3_Neg_1);
-        Panel_Neg_3_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_3_NEG_1 = new JButton("2");
-        BTN_NEG_3_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_3_NEG_1.setBorder(null);
-        Panel_Neg_3_Neg_1.add(BTN_NEG_3_NEG_1, BorderLayout.CENTER);
-        
-        JPanel Panel_Neg_2_Neg_1 = new JPanel();
-        add(Panel_Neg_2_Neg_1);
-        Panel_Neg_2_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_2_NEG_1 = new JButton("");
-        BTN_NEG_2_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_2_NEG_1.setBorder(null);
-        Panel_Neg_2_Neg_1.add(BTN_NEG_2_NEG_1);
-        
-        JPanel Panel_Neg_1_Neg_1 = new JPanel();
-        add(Panel_Neg_1_Neg_1);
-        Panel_Neg_1_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_NEG_1_NEG_1 = new JButton("3");
-        BTN_NEG_1_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_NEG_1_NEG_1.setBorder(null);
-        Panel_Neg_1_Neg_1.add(BTN_NEG_1_NEG_1, BorderLayout.CENTER);
-        
-        JPanel Panel_0_Neg_1 = new JPanel();
-        add(Panel_0_Neg_1);
-        Panel_0_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_0_NEG_1 = new JButton("-");
-        BTN_0_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_0_NEG_1.setBorder(null);
-        Panel_0_Neg_1.add(BTN_0_NEG_1, BorderLayout.CENTER);
-        
-        JPanel Panel_1_Neg_1 = new JPanel();
-        add(Panel_1_Neg_1);
-        Panel_1_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_1_NEG_1 = new JButton("4");
-        BTN_1_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_1_NEG_1.setBorder(null);
-        Panel_1_Neg_1.add(BTN_1_NEG_1, BorderLayout.CENTER);
-        
-        JPanel Panel_2_Neg_1 = new JPanel();
-        add(Panel_2_Neg_1);
-        Panel_2_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_2_NEG_1 = new JButton("");
-        BTN_2_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_2_NEG_1.setBorder(null);
-        Panel_2_Neg_1.add(BTN_2_NEG_1, BorderLayout.CENTER);
-        
-        JPanel Panel_3_Neg_1 = new JPanel();
-        add(Panel_3_Neg_1);
-        Panel_3_Neg_1.setLayout(new BorderLayout(0, 0));
-        
-        JButton BTN_3_NEG_1 = new JButton("5");
-        BTN_3_NEG_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-        BTN_3_NEG_1.setBorder(null);
-        Panel_3_Neg_1.add(BTN_3_NEG_1, BorderLayout.CENTER);
-        */
-
-    }
-    //TODO
-    private void cellCreator(String cellText){
-
-        JPanel newCell = new JPanel(new BorderLayout());
-        JButton cellButton = new JButton(cellText);
-        cellButton.setBorder(null);
-        cellButton.setFont(cellFont);
-
-        try {
-            Integer.parseInt(cellText);
-        }
-
-        catch (NumberFormatException nfe) {
-            cellButton.setEnabled(false);
-        }
-        cellButton.putClientProperty(cellText,value++);
-        cellButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //TODO
+        for (int i = 0; i < allPanels.length; i++){
+            for( int j = 0; j < allPanels[i].length; j++){
+                add(allPanels[i][j]);
             }
-        });
-        newCell.add(cellButton);
-        add(newCell);
+        }
     }
+
 }

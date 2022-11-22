@@ -21,6 +21,7 @@ public class GameDisplay extends JFrame {
 
 	public GameDisplay() {
 		setSize(1000, 700);
+		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//adds each card and their aliases to the game content panel
@@ -28,7 +29,7 @@ public class GameDisplay extends JFrame {
 		gameContent.add(panelMazeEasy, "Easy");
 		gameContent.add(panelGameOverWin, "Win");
 		outerContainer.add(panelMenuItems, BorderLayout.SOUTH);
-		setButtonLogic();
+		setMenuButtonsLogic();
 		outerContainer.add(gameContent,SwingConstants.CENTER);
 		add(outerContainer);
 		setVisible(true);
@@ -37,7 +38,7 @@ public class GameDisplay extends JFrame {
 	/**
 	 * Creates logic for each of the menu buttons
 	 */
-	private void setButtonLogic(){
+	private void setMenuButtonsLogic(){
 		//Start Button
 		panelMenuItems.startButton.addActionListener(new ActionListener() {
 
@@ -67,3 +68,4 @@ public class GameDisplay extends JFrame {
 
 	}
 }
+

@@ -9,6 +9,15 @@ public class Player {
 	int stepsTaken;
 
 	// methods
+	public boolean hasVisited(Integer nodeToCheck){
+		for (Integer oneNode:
+			 nodesVisited) {
+			if (oneNode == nodeToCheck){
+				return true;
+			}
+		}
+		return false;
+	}
 	public void moveForward(Integer nextNode) {
 		nodesVisited.push(nextNode);
 		stepsTaken++;
