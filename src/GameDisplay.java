@@ -24,15 +24,12 @@ public class GameDisplay extends JFrame {
 	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
 	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
-	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM);
-	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD);
+	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
 
 	public GameDisplay() {
 		setSize(1000, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panelMazeEasy.gm.minotaur.setBestPath(MazeDifficulty.EASY);
-		panelMazeMedium.gm.minotaur.setBestPath(MazeDifficulty.EASY); //TODO Change after maze is created
-		panelMazeHard.gm.minotaur.setBestPath(MazeDifficulty.EASY); //TODO Change after maze is created
 
 		// adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
@@ -119,6 +116,9 @@ public class GameDisplay extends JFrame {
 		});
 	}
 
+	/**
+	 * Updates the currently selected maze.
+	 */
 	private void updateCurrentMaze() {
 		switch (mazeDifficulty) {
 		case EASY:
