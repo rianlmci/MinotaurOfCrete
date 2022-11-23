@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import edu.princeton.cs.algs4.StdOut;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -164,11 +167,17 @@ public class PanelMaze extends JPanel {
             }
     };
 
+    // Initialize 
     JPanel allPanels[][];
     int mazeStartingPoint = 0; //TODO Initialize based on maze difficulty.
     int mazeEndingPoint = 7; //TODO Initialize based on maze difficulty.
     private Map<JButton,GridCellContent> mapButtons =
             new HashMap<JButton,GridCellContent>((allCellContents.length * allCellContents[0].length));
+    
+    /*
+     * Create panels from grid cells.
+     * 
+     */
     private void createPanelsFromGridCells() {
         Font cellFont = new Font("Tahoma", Font.BOLD, 8);
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
@@ -207,7 +216,10 @@ public class PanelMaze extends JPanel {
                                         currentGM.minotaur.hasReachedEnd());
 
                                 //if player reached the end node, they win!
-                                if(thisCellsContent.getCellText().equals(String.valueOf(currentGM.player.nodesVisited.peek()))){
+                                StdOut.println("Cell content: " + thisCellsContent.getCellText());
+                                StdOut.println("plyr content: " + currentGM.player.nodesVisited.peek());
+//                                if(thisCellsContent.getCellText().equals(String.valueOf(currentGM.player.nodesVisited.peek()))){
+                                if(thisCellsContent.getCellText().equals(String.valueOf(mazeEndingPoint))) {
                                     while (currentGM.player.nodesVisited.size() > 1){
                                         currentGM.player.moveBackward();
                                     }
