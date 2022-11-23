@@ -216,8 +216,6 @@ public class PanelMaze extends JPanel {
                                         currentGM.minotaur.hasReachedEnd());
 
                                 //if player reached the end node, they win!
-                                StdOut.println("Cell content: " + thisCellsContent.getCellText());
-                                StdOut.println("plyr content: " + currentGM.player.nodesVisited.peek());
 //                                if(thisCellsContent.getCellText().equals(String.valueOf(currentGM.player.nodesVisited.peek()))){
                                 if(thisCellsContent.getCellText().equals(String.valueOf(mazeEndingPoint))) {
                                     while (currentGM.player.nodesVisited.size() > 1){
@@ -232,7 +230,7 @@ public class PanelMaze extends JPanel {
                                 //check minotaur lose condition
                                 else if(currentGM.checkLoseCondition()){
                                     while (currentGM.player.nodesVisited.size() > 1){
-                                        currentGM.player.moveBackward();
+                                        currentGM.player.moveBackward(); ///
                                     }
                                     currentGM.minotaur.move(0);
                                     updateMinotaurTextLabel();

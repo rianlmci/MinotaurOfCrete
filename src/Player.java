@@ -9,21 +9,34 @@ public class Player {
 	protected double stepsTaken;
 
 	// methods
-	public boolean hasVisited(Integer nodeToCheck){
-		for (Integer oneNode:
-			 nodesVisited) {
-			if (oneNode == nodeToCheck){
+	/*
+	 * Check if the player has visited a particular node
+	 */
+	public boolean hasVisited(Integer nodeToCheck) {
+		for (Integer oneNode : nodesVisited) {
+			if (oneNode == nodeToCheck) {
 				return true;
 			}
 		}
 		return false;
 	}
+
+	/*
+	 * Move the player forward and increment their steps taken
+	 */
 	public void moveForward(Integer nextNode) {
 		nodesVisited.push(nextNode);
 		stepsTaken = nodesVisited.size();
 	}
 
+	/*
+	 * Move the player to their previous position and decrement their number of
+	 * steps (take back the turn)
+	 */
 	public void moveBackward() {
+		if (nodesVisited.size() == 1) {
+			return;
+		}
 		nodesVisited.pop();
 		stepsTaken = nodesVisited.size();
 	}
