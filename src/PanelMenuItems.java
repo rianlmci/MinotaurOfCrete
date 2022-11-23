@@ -5,6 +5,8 @@ import java.awt.*;
 /**
  * The bottom panel which contains all the menu buttons
  * for the game.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class PanelMenuItems extends JPanel {
     protected JButton startButton;
@@ -38,7 +40,7 @@ public class PanelMenuItems extends JPanel {
         //titleButton
         titleButton = new JButton("Return to Title");
         titleButton.setFont(buttonFont);
-        titleButton.setForeground(buttonColor);;
+        titleButton.setForeground(buttonColor);
         titleButton.setVisible(false);
 
         //adding all the buttons...

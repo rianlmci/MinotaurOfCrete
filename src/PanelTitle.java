@@ -2,6 +2,8 @@ import javax.swing.*;
 
 /**
  * Title screen in the GUI.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class PanelTitle extends JPanel {
     PanelTitle(){

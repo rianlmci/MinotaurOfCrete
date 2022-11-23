@@ -3,6 +3,8 @@ import java.awt.*;
 
 /**
  * Game over win screen in the GUI.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class PanelGameOverWin extends JPanel {
     PanelGameOverWin(){

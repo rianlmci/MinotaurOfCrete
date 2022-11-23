@@ -8,6 +8,7 @@ import edu.princeton.cs.algs4.In;
  * A grid cell will either be a vertex, an edge*, or whitespace*
  * (*) i/e not a vertex.
  * and each grid cell will contain one symbol.
+ * @author Rianna McIntyre
  */
 public class GridCellContent {
     private boolean isVertex = true;
@@ -45,8 +46,6 @@ public class GridCellContent {
         }
     }
 
-
-
     public String getCellText(){
         return cellText;
     }
@@ -75,6 +74,7 @@ public class GridCellContent {
                 break;
         }
     }
+
     private void setAdjacentHelper(In graphFile, Integer vertex){
         Graph graph = new Graph(graphFile);
         adjacentPoints = graph.adj(vertex);

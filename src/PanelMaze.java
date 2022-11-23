@@ -11,117 +11,38 @@ import java.util.Map;
 
 /**
  * Maze screen in the GUI.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class PanelMaze extends JPanel {
-    public GameMaster currentGM = new GameMaster();
-
-    /**
-     * Updates the GameContainer's GM
-     * by calling parent containers until we reach the GameDisplay's gm,
-     * the master copy of the Game Master variable.
-     */
-    public void updateMasterGm(){
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                getParent(). /*JPanel*/
-                getParent(). /*JPanel*/
-                getParent(). /*LayeredPane*/
-                getParent(). /*JRootPane*/
-                getParent() /*GameDisplay*/).gm = currentGM;
-    }
-
+    public GameMaster gm = new GameMaster();
     public void updateMinotaurTextLabel(){
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                getParent(). /*JPanel*/
-                getParent(). /*JPanel*/
-                getParent(). /*LayeredPane*/
-                getParent(). /*JRootPane*/
-                getParent() /*GameDisplay*/).minotaurTextLabel.setText(currentGM.minotaur.getMinotaurText());
+
+        GameDisplay.minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
     }
 
     public void displayGameOver(){
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.undoButton.setVisible(false);
+        GameDisplay.panelMenuItems.undoButton.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.resetButton.setVisible(false);
+        GameDisplay.panelMenuItems.resetButton.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.titleButton.setVisible(true);
+        GameDisplay.panelMenuItems.titleButton.setVisible(true);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).minotaurTextLabel.setVisible(false);
+        GameDisplay.minotaurTextLabel.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).cardDeck.show(GameDisplay.gameContent, "Lose");
+        GameDisplay.cardDeck.show(GameDisplay.gameContent, "Lose");
 
     }
     public void displayGameOverWin(){
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.undoButton.setVisible(false);
+        GameDisplay.panelMenuItems.undoButton.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.resetButton.setVisible(false);
+        GameDisplay.panelMenuItems.resetButton.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).panelMenuItems.titleButton.setVisible(true);
+        GameDisplay.panelMenuItems.titleButton.setVisible(true);
         
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).minotaurTextLabel.setVisible(false);
+        GameDisplay.minotaurTextLabel.setVisible(false);
 
-        ((GameDisplay)this.
-                getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*JPanel*/
-                        getParent(). /*LayeredPane*/
-                        getParent(). /*JRootPane*/
-                        getParent() /*GameDisplay*/).cardDeck.show(GameDisplay.gameContent, "Win");
+        GameDisplay.cardDeck.show(GameDisplay.gameContent, "Win");
 
     }
 
@@ -135,8 +56,7 @@ public class PanelMaze extends JPanel {
    * [row i] " " is whitespace!
    */
 
-    
-    
+
     private GridCellContent[][] fillGridCells(In inputContents) {
     	String[] lines = inputContents.readAllLines();
     	GridCellContent[][] allCellContents = 
@@ -202,7 +122,7 @@ public class PanelMaze extends JPanel {
     private Map<JButton,GridCellContent> mapButtons =
             new HashMap<JButton,GridCellContent>((allCellContents.length * allCellContents[0].length));
     
-    /*
+    /**
      * Create panels from grid cells.
      * 
      */
@@ -227,64 +147,46 @@ public class PanelMaze extends JPanel {
                 else{
                     cellButton.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            updateMinotaurTextLabel();
                             Object source = e.getSource();
                             if(source instanceof JButton){
                                 GridCellContent thisCellsContent = mapButtons.get(source);
-                                //TODO Remove text when bugs are fixed!
-                                JButton thisCellButton = (JButton) source;
-                                System.out.println("TEMPORARY TESTING TEXT IN GRAPH BUTTON:");
-                                System.out.printf("Player steps: %f\n" +
-                                                "Minotaur steps: %f\n" +
-                                                "Minotaur path size: %d\n" +
-                                                "Minotaur has reached end %b\n",
-                                        currentGM.player.stepsTaken,
-                                        currentGM.minotaur.stepsTaken,
-                                        currentGM.minotaur.bestPath.length,
-                                        currentGM.minotaur.hasReachedEnd());
-
-                                //if player reached the end node, they win!
-//                                if(thisCellsContent.getCellText().equals(String.valueOf(currentGM.player.nodesVisited.peek()))){
+                                //if player clicked the cell containing the end node, they win!
                                 if(thisCellsContent.getCellText().equals(String.valueOf(mazeEndingPoint))) {
-                                    while (currentGM.player.nodesVisited.size() > 1){
-                                        currentGM.player.moveBackward();
+                                    while (gm.player.nodesVisited.size() > 1){
+                                        gm.player.moveBackward();
                                     }
-                                    currentGM.minotaur.move(0);
-                                    updateMinotaurTextLabel();
-                                    updateMasterGm();
-                                    updateMazeGUI();
+                                    gm.minotaur.move(0);
                                     displayGameOverWin();
                                 }
+
+                                //if the player hasn't visited this node, mark it as orange, update grid
+                                if (!gm.player.hasVisited(Integer.parseInt(thisCellsContent.getCellText()))){
+                                    gm.player.moveForward(Integer.parseInt(thisCellsContent.getCellText()));
+                                    gm.minotaur.move(gm.player.stepsTaken);
+                                }
+
                                 //check minotaur lose condition
-                                else if(currentGM.checkLoseCondition()){
-                                    while (currentGM.player.nodesVisited.size() > 1){
-                                        currentGM.player.moveBackward(); ///
+                                if(gm.checkLoseCondition()){
+                                    while (gm.player.nodesVisited.size() > 1){
+                                        gm.player.moveBackward(); ///
                                     }
-                                    currentGM.minotaur.move(0);
-                                    updateMinotaurTextLabel();
-                                    updateMasterGm();
-                                    updateMazeGUI();
+                                    gm.minotaur.move(0);
                                     displayGameOver();
                                 }
 
-                                //is the button a connector, whitespace, or a vertex?
-                                if (thisCellsContent.isVertex()) {
-                                        //if the player hasn't visited this node, mark it as orange, update grid
-                                        if (!currentGM.player.hasVisited(Integer.parseInt(thisCellsContent.getCellText()))){
-                                            currentGM.player.moveForward(Integer.parseInt(thisCellsContent.getCellText()));
-                                            currentGM.minotaur.move(currentGM.player.stepsTaken);
-                                            updateMasterGm();
-                                        }
-                                    }
-                                }
+
+
+
+                            }
+
                             updateMazeGUI();
                         }
                 });
             }
                 //finally, sets up JPanel with this button that will go inside the grid...
                 JPanel cellPanel = new JPanel(new BorderLayout());
-                allPanels[i][j] = cellPanel; //add to 2D array for later reference
                 cellPanel.add(cellButton, SwingConstants.CENTER); //adds button to this panel
+                allPanels[i][j] = cellPanel; //add to 2D array for later reference
                 add(cellPanel); //adds to the maze Grid
             }
         }
@@ -308,22 +210,22 @@ public class PanelMaze extends JPanel {
                     try {
                         Integer.parseInt(thisButton.getText());
                             //if player has visited this node, mark it as orange
-                            if (currentGM.player.hasVisited(Integer.parseInt(thisButton.getText()))){
+                            if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
                                 allPanels[i][j].getComponent(0).setBackground(Color.ORANGE);
                             }
 
                             //if this cell is the ending point's cell, mark it as green.
-                            if (allCellContents[i][j].isVertex() && Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint){
+                            if (allCellContents[i][j].isVertex() &&
+                                    Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint){
                                 allPanels[i][j].getComponent(0).setBackground(Color.GREEN);
                             }
-
 
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.
                             for (Integer onePoint: thisCellsContent.getAdjacentPoints()) {
                                 if (thisButton.getBackground() != Color.ORANGE &&
-                                        !currentGM.player.nodesVisited.isEmpty() &&
-                                        onePoint== currentGM.player.nodesVisited.peek()){
+                                        !gm.player.nodesVisited.isEmpty() &&
+                                        onePoint == gm.player.nodesVisited.peek()){
                                     allPanels[i][j].getComponent(0).setEnabled(true);
                                 }
                             }
@@ -331,16 +233,16 @@ public class PanelMaze extends JPanel {
                     catch (NumberFormatException nfe) {
 
                     }
-
                 };
             }
         }
+        updateMinotaurTextLabel();
     }
 
     PanelMaze(MazeDifficulty difficulty){
-        currentGM.minotaur.setBestPath(difficulty);
-        currentGM.player.moveForward(mazeStartingPoint);
-        currentGM.minotaur.move(currentGM.player.stepsTaken);
+        gm.minotaur.setBestPath(difficulty);
+        gm.player.moveForward(mazeStartingPoint);
+        gm.minotaur.move(gm.player.stepsTaken);
         
 //        fillGridCells(new In());
         

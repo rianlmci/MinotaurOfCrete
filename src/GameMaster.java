@@ -2,6 +2,8 @@ import java.awt.*;
 
 /**
  * A game master which understands the rules and gives feedback about the game's pieces.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class GameMaster {
 	Player player = new Player();

@@ -3,10 +3,10 @@ import java.awt.*;
 
 /**
  * Game over win screen in the GUI.
+ * @author Wyatt McCurdy
  */
 public class PanelGameOverLose extends JPanel {
     PanelGameOverLose(){
-    	
         //setBounds(0, 0, 986, 620);
 
         JLabel minotaurWins = new JLabel("The Minotaur Ate You! :{");
