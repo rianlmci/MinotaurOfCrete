@@ -6,8 +6,8 @@ import edu.princeton.cs.algs4.*;
  * to try and beat the player to the exit of the maze!
  */
 public class Minotaur {
-    private static Integer [] bestPath;
-    private int stepsTaken;
+    protected static Integer [] bestPath;
+    protected double stepsTaken = Double.NEGATIVE_INFINITY;
 
     /**
      * Sets up the best path for the minotaur to take to
@@ -53,21 +53,19 @@ public class Minotaur {
     }
 
     /**
-     * Moves the minotaur the same amount of steps as the player
+     * Moves the minotaur one step ahead of the player
      * (aka setter for stepsTaken)
      * @param playerStepsTaken number of steps the player has currently taken
      */
-    public void move(int playerStepsTaken){
-        if (playerStepsTaken < bestPath.length-1) {
-            stepsTaken = playerStepsTaken;
-        }
+    public void move(double playerStepsTaken){
+        stepsTaken = (playerStepsTaken + 1);
     }
 
     /**
      * @return in minotaur has reached the end of the maze.
      */
     public boolean hasReachedEnd() {
-    	return bestPath.length == stepsTaken;
+    	return bestPath.length <= stepsTaken;
     }
 
     /**
@@ -76,7 +74,7 @@ public class Minotaur {
     public String getMinotaurText(){
         StringBuilder sb = new StringBuilder();
 
-        if (stepsTaken == bestPath.length-2){
+        if (stepsTaken >= bestPath.length-1){
             sb.append("The minotaur is close to the exit! Watch out!");
         }
 

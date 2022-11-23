@@ -7,10 +7,10 @@ import java.awt.*;
  * for the game.
  */
 public class PanelMenuItems extends JPanel {
-    public JButton startButton;
-    public JButton undoButton;
-    public JButton resetButton;
-    public JButton titleButton;
+    protected JButton startButton;
+    protected JButton undoButton;
+    protected JButton resetButton;
+    protected JButton titleButton;
     PanelMenuItems() {
         Font buttonFont = new Font("Yu Gothic", Font.PLAIN, 12);
         Color buttonColor = new Color(255, 128, 255);
