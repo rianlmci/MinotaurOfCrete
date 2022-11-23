@@ -1,5 +1,6 @@
 import javax.swing.*;
 
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 import java.awt.*;
@@ -135,38 +136,69 @@ public class PanelMaze extends JPanel {
    * [row i] " " is whitespace!
    */
 
+    
+    
+    private GridCellContent[][] fillGridCells(In inputContents) {
+    	String[] lines = inputContents.readAllLines();
+    	
+    	
+    	GridCellContent[][] allCellContents = 
+    			new GridCellContent[lines.length][(lines[0].length()/5)+1];
+    	
+    	StdOut.println("allCellContents: " + "[" + allCellContents.length + "," + allCellContents[0].length + "]");					   
+    	
+    	// Testing print
+    	int lineCounter = 0;
+    	for (String currentLine : lines) {
+    		int oneCounter = 0;
+    		int fiveCounter = 0;
+    		while (fiveCounter < currentLine.length()) {
+    			char cellContentChar = currentLine.charAt(fiveCounter);
+    			StdOut.println("[" + lineCounter + "," +oneCounter + "]: " + cellContentChar);
+    			allCellContents[lineCounter][oneCounter] = 
+    					new GridCellContent(Character.toString(cellContentChar));
+    			oneCounter++;
+    			fiveCounter += 5;
+    		}
+    		lineCounter++;
+		}
+    	return allCellContents;
+    }
+    
+    GridCellContent [][] allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
+
     //TODO: Initialize with a text file based on difficulty?
-    GridCellContent [][] allCellContents = {
-            /*Row 0*/{
-            new GridCellContent("1"), /*[0][0]*/
-            new GridCellContent("-"), /*[0][1]*/
-            new GridCellContent("0"), /*[0][2]*/
-            new GridCellContent(" "), /*[0][3]*/
-            new GridCellContent("7"), /*[0][4]*/
-            new GridCellContent("-"), /*[0][5]*/
-            new GridCellContent("6"), /*[0][6]*/
-            },
-
-            /*Row 1*/{
-            new GridCellContent("|"), /*[1][0]*/
-            new GridCellContent(" "), /*[1][1]*/
-            new GridCellContent("|"), /*[1][2]*/
-            new GridCellContent("/"), /*[1][3]*/
-            new GridCellContent("|"), /*[1][4]*/
-            new GridCellContent("/"), /*[1][5]*/
-            new GridCellContent("|"), /*[1][6]*/
-            },
-
-            /*Row 2*/{
-            new GridCellContent("2"), /*[2][0]*/
-            new GridCellContent(" "), /*[2][1]*/
-            new GridCellContent("3"), /*[2][2]*/
-            new GridCellContent("-"), /*[2][3]*/
-            new GridCellContent("4"), /*[2][4]*/
-            new GridCellContent(" "), /*[2][5]*/
-            new GridCellContent("5"), /*[2][6]*/
-            }
-    };
+//    GridCellContent [][] allCellContents = {
+//            /*Row 0*/{
+//            new GridCellContent("1"), /*[0][0]*/
+//            new GridCellContent("-"), /*[0][1]*/
+//            new GridCellContent("0"), /*[0][2]*/
+//            new GridCellContent(" "), /*[0][3]*/
+//            new GridCellContent("7"), /*[0][4]*/
+//            new GridCellContent("-"), /*[0][5]*/
+//            new GridCellContent("6"), /*[0][6]*/
+//            },
+//
+//            /*Row 1*/{
+//            new GridCellContent("|"), /*[1][0]*/
+//            new GridCellContent(" "), /*[1][1]*/
+//            new GridCellContent("|"), /*[1][2]*/
+//            new GridCellContent("/"), /*[1][3]*/
+//            new GridCellContent("|"), /*[1][4]*/
+//            new GridCellContent("/"), /*[1][5]*/
+//            new GridCellContent("|"), /*[1][6]*/
+//            },
+//
+//            /*Row 2*/{
+//            new GridCellContent("2"), /*[2][0]*/
+//            new GridCellContent(" "), /*[2][1]*/
+//            new GridCellContent("3"), /*[2][2]*/
+//            new GridCellContent("-"), /*[2][3]*/
+//            new GridCellContent("4"), /*[2][4]*/
+//            new GridCellContent(" "), /*[2][5]*/
+//            new GridCellContent("5"), /*[2][6]*/
+//            }
+//    };
 
     // Initialize 
     JPanel allPanels[][];
@@ -182,10 +214,14 @@ public class PanelMaze extends JPanel {
     private void createPanelsFromGridCells() {
         Font cellFont = new Font("Tahoma", Font.BOLD, 8);
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
+        StdOut.println("allCellContents: " + "[" + allCellContents.length + "," + allCellContents[0].length + "]");
         setLayout(new GridLayout(allCellContents.length,allCellContents[0].length)); //makes identical rows/col #s as allCells [][]
         for (int i = 0; i < allCellContents.length; i++) {
             for (int j = 0; j < allCellContents[i].length; j++) {
                 //set up button for this cell in the grid...
+            	StdOut.println("i: " + i);
+            	StdOut.println("j: " + j);
+            	StdOut.println("[" + i + "," + j + "]: " + allCellContents[i][j].getCellText()); //
                 JButton cellButton = new JButton(allCellContents[i][j].getCellText());
                 cellButton.setFont(cellFont);
                 cellButton.setBackground(Color.BLACK);
@@ -314,6 +350,9 @@ public class PanelMaze extends JPanel {
         currentGM.minotaur.setBestPath(difficulty);
         currentGM.player.moveForward(mazeStartingPoint);
         currentGM.minotaur.move(currentGM.player.stepsTaken);
+        
+//        fillGridCells(new In());
+        
         createPanelsFromGridCells();
 
         for (int i = 0; i < allPanels.length; i++){
@@ -322,5 +361,15 @@ public class PanelMaze extends JPanel {
             }
         }
     }
+//    
+//    public static void main(String[] args) {
+//    	
+////    	GridCellContent [][] allCellContents = fillGridCells();
+//    	
+//		PanelMaze pm = new PanelMaze(MazeDifficulty.EASY);
+//		
+//		
+//		pm.fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
+//	}
 
 }
