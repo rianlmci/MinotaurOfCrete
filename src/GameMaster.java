@@ -6,9 +6,9 @@ import java.awt.*;
  * @author Wyatt McCurdy
  */
 public class GameMaster {
-	Player player = new Player();
-	Minotaur minotaur = new Minotaur();
-	static GameDisplay gameDisplay;
+	protected Player player = new Player();
+	protected Minotaur minotaur = new Minotaur();
+	protected static GameDisplay gameDisplay;
 
 	/**
 	 * @return if the minotaur has reached the end of the maze.

@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.Stack;
  * @author Wyatt McCurdy
  */
 public class Player {
-	Stack<Integer> nodesVisited = new Stack<>();
+	protected Stack<Integer> nodesVisited = new Stack<>();
 	protected double stepsTaken;
 
 	// methods

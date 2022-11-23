@@ -15,7 +15,7 @@ import java.util.Map;
  * @author Wyatt McCurdy
  */
 public class PanelMaze extends JPanel {
-    public GameMaster gm = new GameMaster();
+    protected GameMaster gm = new GameMaster();
     public void updateMinotaurTextLabel(){
 
         GameDisplay.minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
