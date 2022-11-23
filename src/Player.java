@@ -34,11 +34,11 @@ public class Player {
 	 * steps (take back the turn)
 	 */
 	public void moveBackward() {
+		// TODO make sure this doesn't give mismatched minotaur/player moves
 		if (nodesVisited.size() == 1) {
 			return;
 		}
 		nodesVisited.pop();
 		stepsTaken = nodesVisited.size();
 	}
-
 }

@@ -106,6 +106,7 @@ public class PanelMaze extends JPanel {
                         getParent(). /*LayeredPane*/
                         getParent(). /*JRootPane*/
                         getParent() /*GameDisplay*/).panelMenuItems.titleButton.setVisible(true);
+        
         ((GameDisplay)this.
                 getParent(). /*JPanel*/
                         getParent(). /*JPanel*/
