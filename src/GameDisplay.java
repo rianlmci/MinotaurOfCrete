@@ -20,12 +20,12 @@ public class GameDisplay extends JFrame {
 
 	// Game Screens
 	protected static PanelMenuItems panelMenuItems = new PanelMenuItems();
-	private static PanelTitle panelTitle = new PanelTitle();
-	private static PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
-	private static PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
-	private static PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
-	private static PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM);
-	private static PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD);
+	private PanelTitle panelTitle = new PanelTitle();
+	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
+	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
+	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
+	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM);
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD);
 
 	public GameDisplay() {
 		setSize(1000, 700);
