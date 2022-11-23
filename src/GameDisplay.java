@@ -16,7 +16,6 @@ public class GameDisplay extends JFrame {
 	protected static JPanel outerContainer = new JPanel(new BorderLayout());
 	protected static CardLayout cardDeck = new CardLayout();
 	protected static JPanel gameContent = new JPanel(cardDeck);
-
 	protected static JLabel minotaurTextLabel = new JLabel();
 
 	// Game Screens
