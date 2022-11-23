@@ -1,7 +1,6 @@
 import javax.swing.*;
 
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.StdOut;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -140,13 +139,10 @@ public class PanelMaze extends JPanel {
     
     private GridCellContent[][] fillGridCells(In inputContents) {
     	String[] lines = inputContents.readAllLines();
-    	
-    	
     	GridCellContent[][] allCellContents = 
     			new GridCellContent[lines.length][(lines[0].length()/5)+1];
     	
-    	StdOut.println("allCellContents: " + "[" + allCellContents.length + "," + allCellContents[0].length + "]");					   
-    	
+
     	// Testing print
     	int lineCounter = 0;
     	for (String currentLine : lines) {
@@ -154,7 +150,6 @@ public class PanelMaze extends JPanel {
     		int fiveCounter = 0;
     		while (fiveCounter < currentLine.length()) {
     			char cellContentChar = currentLine.charAt(fiveCounter);
-    			StdOut.println("[" + lineCounter + "," +oneCounter + "]: " + cellContentChar);
     			allCellContents[lineCounter][oneCounter] = 
     					new GridCellContent(Character.toString(cellContentChar));
     			oneCounter++;
@@ -214,15 +209,11 @@ public class PanelMaze extends JPanel {
     private void createPanelsFromGridCells() {
         Font cellFont = new Font("Tahoma", Font.BOLD, 8);
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
-        StdOut.println("allCellContents: " + "[" + allCellContents.length + "," + allCellContents[0].length + "]");
         setLayout(new GridLayout(allCellContents.length,allCellContents[0].length)); //makes identical rows/col #s as allCells [][]
         for (int i = 0; i < allCellContents.length; i++) {
             for (int j = 0; j < allCellContents[i].length; j++) {
                 //set up button for this cell in the grid...
-            	StdOut.println("i: " + i);
-            	StdOut.println("j: " + j);
-            	StdOut.println("[" + i + "," + j + "]: " + allCellContents[i][j].getCellText()); //
-                JButton cellButton = new JButton(allCellContents[i][j].getCellText());
+            	JButton cellButton = new JButton(allCellContents[i][j].getCellText());
                 cellButton.setFont(cellFont);
                 cellButton.setBackground(Color.BLACK);
                 cellButton.setForeground(Color.WHITE);
