@@ -7,11 +7,11 @@ import edu.princeton.cs.algs4.Stack;
  */
 public class Player {
 	protected Stack<Integer> nodesVisited = new Stack<>();
-	protected double stepsTaken;
+	protected int stepsTaken;
 
 	// methods
 	/**
-	 * Check if the player has visited a particular node
+	 * Checks if the player has visited a particular node
 	 */
 	public boolean hasVisited(Integer nodeToCheck) {
 		for (Integer oneNode : nodesVisited) {
@@ -23,7 +23,7 @@ public class Player {
 	}
 
 	/**
-	 * Move the player forward and increment their steps taken
+	 * Moves the player forward and increments their steps taken
 	 */
 	public void moveForward(Integer nextNode) {
 		nodesVisited.push(nextNode);
@@ -31,11 +31,10 @@ public class Player {
 	}
 
 	/**
-	 * Move the player to their previous position and decrement their number of
-	 * steps (take back the turn)
+	 * Moves the player to their previous position and decrements their number of
+	 * steps (takes back their turn)
 	 */
 	public void moveBackward() {
-		// TODO make sure this doesn't give mismatched minotaur/player moves
 		if (nodesVisited.size() == 1) {
 			return;
 		}

@@ -7,7 +7,7 @@ import edu.princeton.cs.algs4.In;
  * A maze will be made of a series of cells in a grid.
  * A grid cell will either be a vertex, an edge*, or whitespace*
  * (*) i/e not a vertex.
- * and each grid cell will contain one symbol.
+ * and each grid cell will contain either symbols or a whitespace.
  * @author Rianna McIntyre
  */
 public class GridCellContent {
@@ -16,17 +16,12 @@ public class GridCellContent {
     private Iterable<Integer> adjacentPoints;
 
     /**
-     * @param cellText symbol to be inserted into the grid cell
-     * @throws IllegalArgumentException if <code>cellText</code> is null
-     * @throws IllegalArgumentException if <code>cellText</code> is > 1
+     * @param cellText symbol or symbols to be inserted into the grid cell.
+     * @throws IllegalArgumentException if <code>cellText</code> is null.
      */
     GridCellContent(String cellText) {
         if (cellText == null) {
             throw new IllegalArgumentException("Cell text cannot be null");
-        }
-
-        if (cellText.length() > 1) {
-            throw new IllegalArgumentException("Cell text must less than or equal to 1");
         }
 
         if (cellText.equals(" ")){ //if cell is whitespace
@@ -36,9 +31,8 @@ public class GridCellContent {
         }
 
         try {
-            Integer.parseInt(cellText);
+            setAdjacent(Integer.parseInt(cellText));
             this.cellText = cellText;
-            setAdjacent(Integer.parseInt(cellText), MazeDifficulty.EASY);
         }
         catch (NumberFormatException nfe) {
             this.isVertex = false;
@@ -54,30 +48,29 @@ public class GridCellContent {
         return isVertex;
     }
 
-    private void setAdjacent(Integer vertex, MazeDifficulty difficulty){
+    private void setAdjacent(Integer vertex){
         In graphFile;
-        switch (difficulty){
+        Graph graph;
+        switch (GameDisplay.mazeDifficulty){
             case EASY:
                 graphFile = new In("src/resources/EasyGraph.txt");
-                setAdjacentHelper(graphFile,vertex);
+                graph = new Graph(graphFile);
+                adjacentPoints = graph.adj(vertex);
                 break;
             case MEDIUM:
                 graphFile = new In("src/resources/MediumGraph.txt");
-                setAdjacentHelper(graphFile,vertex);
+                graph = new Graph(graphFile);
+                adjacentPoints = graph.adj(vertex);
                 break;
             case HARD:
                 graphFile = new In("src/resources/HardGraph.txt");
-                setAdjacentHelper(graphFile,vertex);
+                graph = new Graph(graphFile);
+                adjacentPoints = graph.adj(vertex);
                 break;
             default:
                 System.err.println("Graph file not found! check your path and try again!");
                 break;
         }
-    }
-
-    private void setAdjacentHelper(In graphFile, Integer vertex){
-        Graph graph = new Graph(graphFile);
-        adjacentPoints = graph.adj(vertex);
     }
 
     public Iterable<Integer> getAdjacentPoints() {

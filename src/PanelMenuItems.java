@@ -1,5 +1,5 @@
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
@@ -14,33 +14,23 @@ public class PanelMenuItems extends JPanel {
     protected JButton resetButton;
     protected JButton titleButton;
     PanelMenuItems() {
-        Font buttonFont = new Font("Yu Gothic", Font.PLAIN, 12);
-        Color buttonColor = new Color(255, 128, 255);
         setLayout(new FlowLayout());
-        setBorder(new BevelBorder(1));
-        setBackground(new Color(255, 255, 255));
+        setBackground(null);
+        setBorder(new EmptyBorder(20,0,40,0)); //Pseudo padding for menu items
 
         //startButton
-        startButton = new JButton("Get Started!");
-        startButton.setFont(buttonFont);
-        startButton.setForeground(buttonColor);
+        startButton = createMenuButton("Get Started!");
 
         //undoButton
-        undoButton = new JButton("Undo");
-        undoButton.setFont(buttonFont);
-        undoButton.setForeground(buttonColor);
+        undoButton = createMenuButton("Undo");
         undoButton.setVisible(false);
 
         //ResetButton
-        resetButton = new JButton("Reset");
-        resetButton.setFont(buttonFont);
-        resetButton.setForeground(buttonColor);
+        resetButton = createMenuButton("Reset");
         resetButton.setVisible(false);
 
         //titleButton
-        titleButton = new JButton("Return to Title");
-        titleButton.setFont(buttonFont);
-        titleButton.setForeground(buttonColor);
+        titleButton = createMenuButton("Return to Title");
         titleButton.setVisible(false);
 
         //adding all the buttons...
@@ -48,5 +38,30 @@ public class PanelMenuItems extends JPanel {
         add(undoButton);
         add(resetButton);
         add(titleButton);
+    }
+
+    /**
+     * Helper method that styles all buttons in the menu.
+     * @param menuButtonText
+     * @return a button that's styled for the game menu.
+     */
+    private JButton createMenuButton(String menuButtonText) {
+        //look and feel of buttons:
+        FontGetter fontGetter = new FontGetter();
+        Font buttonFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+        buttonFont = buttonFont.deriveFont(Font.PLAIN,25);
+        Color fontColor = Color.WHITE;
+        //Color fontColor = new Color(255, 128, 255); //magenta
+        Color backgroundColor = Color.DARK_GRAY;
+
+        //sets the style of the buttons
+        JButton button = new JButton(menuButtonText);
+        button.setFocusable(false);
+        button.setFont(buttonFont);
+        button.setForeground(fontColor);
+        button.setBackground(backgroundColor);
+		button.setFocusable(false);
+		button.setBorder(new EmptyBorder(10,10,10,10));
+        return button;
     }
 }

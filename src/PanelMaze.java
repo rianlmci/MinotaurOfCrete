@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Maze screen in the GUI.
+ * Maze screens in the GUI.
  * @author Rianna McIntyre
  * @author Wyatt McCurdy
  */
@@ -21,9 +21,16 @@ public class PanelMaze extends JPanel {
     private int mazeStartingPoint;
     private int mazeEndingPoint;
 
+    //Look and feel of maze:
+    private final Color FONT_COLOR = Color.WHITE;
+    private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
+    private final Color VISITED_COLOR = Color.ORANGE;
+    private final Color EXIT_COLOR = Color.GREEN;
+
     PanelMaze(MazeDifficulty difficulty){
         gm.minotaur.setBestPath(difficulty);
-        switch (difficulty){ //TODO: Real points when maze is made for med + hard!
+        setBackground(BACKGROUND_COLOR);
+        switch (difficulty){ //TODO: Real points and paths when maze is made for med + hard!
             case EASY:
                 allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
                 mazeStartingPoint = 0;
@@ -41,7 +48,7 @@ public class PanelMaze extends JPanel {
                 break;
         }
 
-        mapButtons = new HashMap<JButton,GridCellContent>((allCellContents.length * allCellContents[0].length));
+        mapButtons = new HashMap<>((allCellContents.length * allCellContents[0].length));
         gm.player.moveForward(mazeStartingPoint);
         gm.minotaur.move(gm.player.stepsTaken);
 
@@ -58,6 +65,9 @@ public class PanelMaze extends JPanel {
         GameDisplay.minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
     }
 
+    /**
+     * Displays the losing screen to the user.
+     */
     public void displayGameOver(){
         GameDisplay.panelMenuItems.undoButton.setVisible(false);
 
@@ -70,6 +80,9 @@ public class PanelMaze extends JPanel {
         GameDisplay.cardDeck.show(GameDisplay.gameContent, "Lose");
 
     }
+    /**
+     * Displays the winning screen to the user.
+     */
     public void displayGameOverWin(){
         GameDisplay.panelMenuItems.undoButton.setVisible(false);
 
@@ -150,7 +163,11 @@ public class PanelMaze extends JPanel {
      * Create panels from grid cells.
      */
     private void createPanelsFromGridCells() {
-        Font cellFont = new Font("Tahoma", Font.BOLD, 8);
+        //Font style setup:
+        FontGetter fontGetter = new FontGetter();
+        Font cellFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+        cellFont = cellFont.deriveFont(Font.BOLD,20);
+
         allPanels = new JPanel[allCellContents.length][allCellContents[0].length]; //makes identical rows/col #s as allCells [][]
         setLayout(new GridLayout(allCellContents.length,allCellContents[0].length)); //makes identical rows/col #s as allCells [][]
         for (int i = 0; i < allCellContents.length; i++) {
@@ -158,9 +175,11 @@ public class PanelMaze extends JPanel {
                 //set up button for this cell in the grid...
             	JButton cellButton = new JButton(allCellContents[i][j].getCellText());
                 cellButton.setFont(cellFont);
-                cellButton.setBackground(Color.BLACK);
-                cellButton.setForeground(Color.WHITE);
+                cellButton.setBackground(BACKGROUND_COLOR);
+                cellButton.setForeground(FONT_COLOR);
                 cellButton.setBorder(null);
+                cellButton.setFocusable(false);
+                cellButton.setFocusPainted(false);
                 mapButtons.put(cellButton, allCellContents[i][j]); //add key value pair for later use
                 //if this cell is not a vertex, don't let the user click on it.
                 if (!allCellContents[i][j].isVertex()){
@@ -204,6 +223,7 @@ public class PanelMaze extends JPanel {
                 //finally, sets up JPanel with this button that will go inside the grid...
                 JPanel cellPanel = new JPanel(new BorderLayout());
                 cellPanel.add(cellButton, SwingConstants.CENTER); //adds button to this panel
+                cellPanel.setBackground(BACKGROUND_COLOR);
                 allPanels[i][j] = cellPanel; //add to 2D array for later reference
                 add(cellPanel); //adds to the maze Grid
             }
@@ -223,26 +243,25 @@ public class PanelMaze extends JPanel {
 
                     //first, we reset buttons to default values
                     allPanels[i][j].getComponent(0).setEnabled(false);
-                    allPanels[i][j].getComponent(0).setBackground(Color.BLACK);
+                    allPanels[i][j].getComponent(0).setBackground(BACKGROUND_COLOR);
 
                     try {
                         Integer.parseInt(thisButton.getText());
-                            //if player has visited this node, mark it as orange
+                            //if player has visited this node, mark it with visited color
                             if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
-                                allPanels[i][j].getComponent(0).setBackground(Color.ORANGE);
+                                allPanels[i][j].getComponent(0).setBackground(VISITED_COLOR);
                             }
 
-                            //if this cell is the ending point's cell, mark it as green.
+                            //if this cell is the ending point's cell, mark it with the exit color
                             if (allCellContents[i][j].isVertex() &&
                                     Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint){
-                                allPanels[i][j].getComponent(0).setBackground(Color.GREEN);
+                                allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
                             }
 
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.
                             for (Integer onePoint: thisCellsContent.getAdjacentPoints()) {
-                                if (thisButton.getBackground() != Color.ORANGE &&
-                                        !gm.player.nodesVisited.isEmpty() &&
+                                if (thisButton.getBackground() != VISITED_COLOR &&
                                         onePoint == gm.player.nodesVisited.peek()){
                                     allPanels[i][j].getComponent(0).setEnabled(true);
                                 }

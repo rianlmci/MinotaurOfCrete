@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -10,10 +11,11 @@ import java.awt.event.ActionEvent;
  * @author Wyatt McCurdy
  */
 public class GameDisplay extends JFrame {
-	private MazeDifficulty mazeDifficulty = MazeDifficulty.EASY; // TODO: Initialize later with a screen
+	protected static MazeDifficulty mazeDifficulty = MazeDifficulty.EASY; // TODO: Initialize later with a screen
 
 	// Display Containers
-	protected static JPanel outerContainer = new JPanel(new BorderLayout());
+	protected static JPanel outerContainer = new JPanel();
+
 	protected static CardLayout cardDeck = new CardLayout();
 	protected static JPanel gameContent = new JPanel(cardDeck);
 	protected static JLabel minotaurTextLabel = new JLabel();
@@ -26,11 +28,20 @@ public class GameDisplay extends JFrame {
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
 	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
 	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
+	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
+
+	// Look and feel of GameDisplay
+	//private final Font FONT = new Font("System", Font.ITALIC, 20);
+	private final Color FONT_COLOR = Color.WHITE;
+	private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
 
 	public GameDisplay() {
-		setSize(1000, 700);
+		setTitle("The Minotaur of Crete");
+		setSize(1500, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.Y_AXIS));
+		outerContainer.setBackground(BACKGROUND_COLOR);
+		outerContainer.setForeground(FONT_COLOR);
 		// adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
 		gameContent.add(panelMazeEasy, "Easy");
@@ -38,12 +49,22 @@ public class GameDisplay extends JFrame {
 		gameContent.add(panelMazeHard, "Hard");
 		gameContent.add(panelGameOverWin, "Win");
 		gameContent.add(panelGameOverLose, "Lose");
-		outerContainer.add(gameContent, BorderLayout.NORTH);
+		outerContainer.add(gameContent);
+
+		//Look and feel of minotaur label:
 		minotaurTextLabel.setVisible(false);
-		outerContainer.add(minotaurTextLabel, BorderLayout.CENTER);
-		outerContainer.add(panelMenuItems, BorderLayout.SOUTH);
+		minotaurTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT); //centers the label horizontally
+		minotaurTextLabel.setBorder(new EmptyBorder(20,0,20,0)); //Pseudo padding for label
+		FontGetter fontGetter = new FontGetter();
+		Font minotaurFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+		minotaurFont = minotaurFont.deriveFont(Font.ITALIC,30);
+		minotaurTextLabel.setFont(minotaurFont);
+		minotaurTextLabel.setForeground(FONT_COLOR);
+
+		outerContainer.add(minotaurTextLabel);
+		outerContainer.add(panelMenuItems);
 		setMenuButtonsLogic();
-		add(outerContainer);
+		add(scrollableArea);
 		panelMazeEasy.updateMazeGUI();
 		panelMazeMedium.updateMazeGUI();
 		panelMazeHard.updateMazeGUI();
@@ -102,6 +123,7 @@ public class GameDisplay extends JFrame {
 							if (!panelMazeHard.gm.player.nodesVisited.isEmpty()) {
 							panelMazeHard.gm.player.moveBackward();
 							panelMazeHard.gm.minotaur.move(panelMazeHard.gm.player.stepsTaken);
+							break;
 					}
 				}
 				updateCurrentMaze();

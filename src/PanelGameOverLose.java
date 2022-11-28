@@ -7,11 +7,9 @@ import java.awt.*;
  */
 public class PanelGameOverLose extends JPanel {
     PanelGameOverLose(){
-        //setBounds(0, 0, 986, 620);
-
-        JLabel minotaurWins = new JLabel("The Minotaur Ate You! :{");
-        minotaurWins.setFont(new Font("Tahoma", Font.BOLD, 20));
-        minotaurWins.setHorizontalAlignment(SwingConstants.CENTER);
-        add(minotaurWins);
+        JLabel minotaurWinsLabel = new JLabel("The Minotaur Ate You! :{");
+        minotaurWinsLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+        minotaurWinsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(minotaurWinsLabel);
     }
 }

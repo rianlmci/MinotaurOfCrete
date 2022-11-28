@@ -63,7 +63,7 @@ public class Minotaur {
     }
 
     /**
-     * @return in minotaur has reached the end of the maze.
+     * @return if minotaur has reached the end of the maze.
      */
     public boolean hasReachedEnd() {
     	return bestPath.length <= stepsTaken;
@@ -80,7 +80,7 @@ public class Minotaur {
         }
 
         else
-            sb.append("The hungry minotaur slinks around the maze.");
+            sb.append("The hungry minotaur slinks around the maze...");
 
         return sb.toString();
     }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Title screen in the GUI.
@@ -6,10 +7,16 @@ import javax.swing.*;
  * @author Wyatt McCurdy
  */
 public class PanelTitle extends JPanel {
+
+    //Look and feel:
+    private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
+
     PanelTitle(){
-        //setBounds(0, 0, 986, 620);
+        setLayout(new GridLayout()); //this centers the art vertically for some reason? It's what I want, so.
+        setBackground(BACKGROUND_COLOR);
         JLabel minotaurArtLabel = new JLabel();
-        minotaurArtLabel.setIcon(new ImageIcon(GameDisplay.class.getResource("/resources/Minotaur2.png")));
+        minotaurArtLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        minotaurArtLabel.setIcon(new ImageIcon(GameDisplay.class.getResource("/resources/Minotaur.png")));
         add(minotaurArtLabel);
     }
 }
