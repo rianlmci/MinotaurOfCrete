@@ -7,27 +7,28 @@ import java.io.InputStream;
  * <a href="http://www.java2s.com/Code/Java/2D-Graphics-GUI/Loadfontfromttffile.htm">
  * "Load font from TTF File" @ java2s.com
  * </a>
- * Additional tweaking by:
- * @author Rianna McIntyre
+ * @author Rianna McIntyre (additional tweaking)
  */
 public class FontGetter {
     /**
-     * @param fontFileName full file name ex: "Cinzel-Black.ttf"
-     * @return font from font filepath
+     * Gets a font by its file name and extension.
+     * @param fontFileName full file name, ex: "Cinzel-Black.ttf"
+     * @return font
      */
     public Font getFontByName(String fontFileName){
         Font font = null;
         String completeFilePath = "/resources/fonts/" + fontFileName;
+
         try {
             InputStream inputStream = FontGetter.class.getResourceAsStream(completeFilePath);
             font = Font.createFont(Font.TRUETYPE_FONT, inputStream);
         }
-
         catch (Exception e) {
             e.printStackTrace();
             System.err.println(fontFileName + "was not found. Using default serif font instead...");
             font = new Font("serif", Font.PLAIN, 24);
         }
+
         return font;
     }
 

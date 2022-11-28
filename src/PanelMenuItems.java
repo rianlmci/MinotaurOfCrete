@@ -41,7 +41,7 @@ public class PanelMenuItems extends JPanel {
     }
 
     /**
-     * Helper method that styles all buttons in the menu.
+     * Styler for all buttons in the menu.
      * @param menuButtonText
      * @return a button that's styled for the game menu.
      */
@@ -61,7 +61,7 @@ public class PanelMenuItems extends JPanel {
         button.setForeground(fontColor);
         button.setBackground(backgroundColor);
 		button.setFocusable(false);
-		button.setBorder(new EmptyBorder(10,10,10,10));
+		button.setBorder(new EmptyBorder(10,10,10,10)); //Pseudo-margin for button
         return button;
     }
 }
