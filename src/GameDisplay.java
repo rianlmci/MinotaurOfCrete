@@ -1,54 +1,73 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 /**
  * Class in charge of all the GUI components of the minotaur game.
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class GameDisplay extends JFrame {
-	public GameMaster gm = new GameMaster();
+	protected static MazeDifficulty mazeDifficulty = MazeDifficulty.EASY; // TODO: Initialize later with a screen
 
-	private MazeDifficulty mazeDifficulty = MazeDifficulty.EASY; //TODO: Initialize later with a screen
+	// Display Containers
+	protected static JPanel outerContainer = new JPanel();
 
-	//Display Containers
-	protected static JPanel outerContainer = new JPanel(new BorderLayout());
 	protected static CardLayout cardDeck = new CardLayout();
 	protected static JPanel gameContent = new JPanel(cardDeck);
+	protected static JLabel minotaurTextLabel = new JLabel();
 
-	public JLabel minotaurTextLabel = new JLabel(gm.minotaur.getMinotaurText());
-
-	//Game Screens
+	// Game Screens
 	protected static PanelMenuItems panelMenuItems = new PanelMenuItems();
-	private static PanelTitle panelTitle = new PanelTitle();
-	private static PanelGameOverWin panelGameOverWin= new PanelGameOverWin();
-	private static PanelGameOverLose panelGameOverLose= new PanelGameOverLose();
-	private static PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
-	//private static PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM);
-	//private static PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD);
+	private PanelTitle panelTitle = new PanelTitle();
+	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
+	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
+	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
+	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
+	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
+
+	// Look and feel of GameDisplay
+	//private final Font FONT = new Font("System", Font.ITALIC, 20);
+	private final Color FONT_COLOR = Color.WHITE;
+	private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
 
 	public GameDisplay() {
-		setSize(1000, 700);
-		//setBackground(new Color(255, 255, 255));
+		setTitle("The Minotaur of Crete");
+		setSize(1500, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		//adds each card and their aliases to the game content panel
+		outerContainer.setLayout(new BoxLayout(outerContainer, BoxLayout.Y_AXIS));
+		outerContainer.setBackground(BACKGROUND_COLOR);
+		outerContainer.setForeground(FONT_COLOR);
+		// adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
 		gameContent.add(panelMazeEasy, "Easy");
+		gameContent.add(panelMazeMedium, "Medium");
+		gameContent.add(panelMazeHard, "Hard");
 		gameContent.add(panelGameOverWin, "Win");
 		gameContent.add(panelGameOverLose, "Lose");
-		outerContainer.add(gameContent,BorderLayout.NORTH);
+		outerContainer.add(gameContent);
+
+		//Look and feel of minotaur label:
 		minotaurTextLabel.setVisible(false);
-		outerContainer.add(minotaurTextLabel, BorderLayout.CENTER);
-		outerContainer.add(panelMenuItems, BorderLayout.SOUTH);
+		minotaurTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT); //centers the label horizontally
+		minotaurTextLabel.setBorder(new EmptyBorder(20,0,20,0)); //Pseudo padding for label
+		FontGetter fontGetter = new FontGetter();
+		Font minotaurFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+		minotaurFont = minotaurFont.deriveFont(Font.ITALIC,30);
+		minotaurTextLabel.setFont(minotaurFont);
+		minotaurTextLabel.setForeground(FONT_COLOR);
+
+		outerContainer.add(minotaurTextLabel);
+		outerContainer.add(panelMenuItems);
 		setMenuButtonsLogic();
-		add(outerContainer);
-		panelMazeEasy.updateMasterGm();
+		add(scrollableArea);
 		panelMazeEasy.updateMazeGUI();
-		//panelMazeMedium.updateMasterGm();
-		//panelMazeMedium.updateMazeGUI();
-		//panelMazeHard.updateMasterGm();
-		//panelMazeHard.updateMazeGUI();
+		panelMazeMedium.updateMazeGUI();
+		panelMazeHard.updateMazeGUI();
 		setVisible(true);
 	}
 
@@ -56,12 +75,12 @@ public class GameDisplay extends JFrame {
 	 * Creates logic for each of the menu buttons
 	 */
 	private void setMenuButtonsLogic() {
-		//Start Button
+		// Start Button
 		panelMenuItems.startButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				updateMazeGm();
+				updateCurrentMaze();
 				cardDeck.show(gameContent, "Easy");
 				minotaurTextLabel.setVisible(true);
 				panelMenuItems.startButton.setVisible(false);
@@ -70,80 +89,103 @@ public class GameDisplay extends JFrame {
 			}
 		});
 
-		//(Return to) Title Button
+		// (Return to) Title Button
 		panelMenuItems.titleButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				updateMazeGm();
+				resetCurrentPlayer();
+				updateCurrentMaze();
 				cardDeck.show(gameContent, "Title");
 				panelMenuItems.startButton.setVisible(true);
 				panelMenuItems.titleButton.setVisible(false);
 			}
 		});
 
-		//Undo Button
+		// Undo Button
 		panelMenuItems.undoButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				if(!gm.player.nodesVisited.isEmpty()) {
-					System.out.println("is not empty");
-					gm.player.moveBackward();
-					gm.minotaur.move(gm.player.stepsTaken);
+					switch (mazeDifficulty) {
+						case EASY:
+							if (!panelMazeEasy.gm.player.nodesVisited.isEmpty()){
+								panelMazeEasy.gm.player.moveBackward();
+								panelMazeEasy.gm.minotaur.move(panelMazeEasy.gm.player.stepsTaken);
+							}
+							break;
+						case MEDIUM:
+							if (!panelMazeMedium.gm.player.nodesVisited.isEmpty()) {
+								panelMazeMedium.gm.player.moveBackward();
+								panelMazeMedium.gm.minotaur.move(panelMazeMedium.gm.player.stepsTaken);
+							}
+							break;
+						case HARD:
+							if (!panelMazeHard.gm.player.nodesVisited.isEmpty()) {
+							panelMazeHard.gm.player.moveBackward();
+							panelMazeHard.gm.minotaur.move(panelMazeHard.gm.player.stepsTaken);
+							break;
+					}
 				}
-
-				//TODO Remove text when bugs are fixed!
-				System.out.println("TEMPORARY TESTING TEXT IN UNDO:");
-				System.out.printf("Player steps: %f\n" +
-								"Minotaur steps: %f\n" +
-								"Minotaur path size: %d\n" +
-								"Minotaur has reached end %b\n",
-						gm.player.stepsTaken,
-						gm.minotaur.stepsTaken,
-						gm.minotaur.bestPath.length,
-						gm.minotaur.hasReachedEnd());
-				updateMazeGm();
-				minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
-
+				updateCurrentMaze();
 			}
 		});
 		panelMenuItems.resetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				while (gm.player.nodesVisited.size() > 1){
-					gm.player.moveBackward();
-				}
-				gm.minotaur.move(gm.player.stepsTaken);
-				minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
-				updateMazeGm();
+				resetCurrentPlayer();
+				updateCurrentMaze();
 			}
 		});
 	}
 
-	private void updateMazeGm() {
+	/**
+	 * Updates the currently selected maze.
+	 */
+	private void updateCurrentMaze() {
+		switch (mazeDifficulty) {
+		case EASY:
+			panelMazeEasy.updateMazeGUI();
+			break;
+		case MEDIUM:
+			panelMazeMedium.updateMazeGUI();
+			break;
+		case HARD:
+			panelMazeHard.updateMazeGUI();
+			break;
+		}
+	}
+
+	/**
+	 * Reset current player and minotaur position and steps taken
+	 */
+	private void resetCurrentPlayer() {
 		switch (mazeDifficulty) {
 			case EASY:
-				panelMazeEasy.currentGM = gm;
+				while (panelMazeEasy.gm.player.nodesVisited.size() > 1) {
+					panelMazeEasy.gm.player.moveBackward();
+				}
+				panelMazeEasy.gm.minotaur.move(panelMazeEasy.gm.player.stepsTaken);
 				panelMazeEasy.updateMazeGUI();
 				break;
 			case MEDIUM:
-				//panelMazeMedium.currentGM = gm;
-				//panelMazeMedium.updateMazeGUI();
+				while (panelMazeMedium.gm.player.nodesVisited.size() > 1) {
+					panelMazeMedium.gm.player.moveBackward();
+				}
+				panelMazeMedium.gm.minotaur.move(panelMazeMedium.gm.player.stepsTaken);
+				panelMazeMedium.updateMazeGUI();
 				break;
 			case HARD:
-				//panelMazeHard.currentGM = gm;
-				//panelMazeHard.updateMazeGUI();
-				break;
-			default:
-				panelMazeEasy.currentGM = gm;
-				panelMazeEasy.updateMazeGUI();
+				while (panelMazeHard.gm.player.nodesVisited.size() > 1) {
+					panelMazeHard.gm.player.moveBackward();
+				}
+				panelMazeHard.gm.minotaur.move(panelMazeHard.gm.player.stepsTaken);
+				panelMazeHard.updateMazeGUI();
 				break;
 		}
 	}
+
 	// = = = = = TEST CLIENT = = = = = //
 	public static void main(String[] args) {
 
 	}
 }
-

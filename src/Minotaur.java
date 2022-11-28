@@ -1,12 +1,13 @@
 import edu.princeton.cs.algs4.*;
 
-
 /**
  * The antagonist of the maze, the minotaur! It moves around the maze in a set path
  * to try and beat the player to the exit of the maze!
+ * @author Rianna McIntyre
+ * @author Wyatt McCurdy
  */
 public class Minotaur {
-    protected static Integer [] bestPath;
+    protected Integer [] bestPath;
     protected double stepsTaken = Double.NEGATIVE_INFINITY;
 
     /**
@@ -22,12 +23,12 @@ public class Minotaur {
                 setBestPathHelper(graphFile,0, 7);//TODO: Files, Ent/Exit.
                 break;
             case MEDIUM:
-                graphFile = new In("src/resources/MediumGraph.txt");
-                setBestPathHelper(graphFile,1, 8);//TODO: Files, Ent/Exit.
+                //graphFile = new In("src/resources/MediumGraph.txt");
+                //setBestPathHelper(graphFile,1, 8);//TODO: Files, Ent/Exit.
                 break;
             case HARD:
-                graphFile = new In("src/resources/HardGraph.txt");
-                setBestPathHelper(graphFile,1, 9);//TODO: Files, Ent/Exit.
+                //graphFile = new In("src/resources/HardGraph.txt");
+                //setBestPathHelper(graphFile,1, 9);//TODO: Files, Ent/Exit.
                 break;
             default:
                 System.err.println("Graph file not found! check your path and try again!");
@@ -62,7 +63,7 @@ public class Minotaur {
     }
 
     /**
-     * @return in minotaur has reached the end of the maze.
+     * @return if minotaur has reached the end of the maze.
      */
     public boolean hasReachedEnd() {
     	return bestPath.length <= stepsTaken;
@@ -79,7 +80,7 @@ public class Minotaur {
         }
 
         else
-            sb.append("The hungry minotaur slinks around the maze.");
+            sb.append("The hungry minotaur slinks around the maze...");
 
         return sb.toString();
     }
