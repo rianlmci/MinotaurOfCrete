@@ -28,7 +28,7 @@ public class GameDisplay extends JFrame {
 	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
 	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
-	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD); //TODO Change when mazes are made
 	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
 
 	// Look and feel of GameDisplay

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="game over lose">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="* Fixed adjacency bug &#10;&#10;* changed some spacing in classes&#10;&#10;* changed minotaur art to small for visibility on laptops.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Minotaur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PanelMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelTitle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/MediumGraph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/MediumGraph.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/HardGraph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/HardGraph.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,12 +33,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resources/fonts" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ri\IdeaProjects\MinotaurOfCrete\src\resources\fonts" />
@@ -97,6 +96,7 @@
       <workItem from="1669615910478" duration="1887000" />
       <workItem from="1669698176998" duration="608000" />
       <workItem from="1669777355094" duration="4377000" />
+      <workItem from="1669846988991" duration="708000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1668637073728</created>
@@ -182,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669616052510</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="* Fixed adjacency bug &#10;&#10;* changed some spacing in classes&#10;&#10;* changed minotaur art to small for visibility on laptops.">
+      <created>1669847324572</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669847324572</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,17 +216,7 @@
     <MESSAGE value="Moved around methods and declarations a little for clarity." />
     <MESSAGE value="Rianna: Started refining visuals for the game elements, refined doc comments and added fonts + a font getter class" />
     <MESSAGE value="Tweaked doc comments for clarity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tweaked doc comments for clarity" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GameDisplay.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="* Fixed adjacency bug &#10;&#10;* changed some spacing in classes&#10;&#10;* changed minotaur art to small for visibility on laptops." />
+    <option name="LAST_COMMIT_MESSAGE" value="* Fixed adjacency bug &#10;&#10;* changed some spacing in classes&#10;&#10;* changed minotaur art to small for visibility on laptops." />
   </component>
 </project>

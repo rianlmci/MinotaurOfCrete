@@ -50,8 +50,8 @@ public class PanelMaze extends JPanel {
                 //TODO: remove when finished all mazes
                 GameDisplay.mazeDifficulty = MazeDifficulty.HARD;
                 allCellContents = fillGridCells(new In("src/resources/HardMazeDisplay.txt"));
-                mazeStartingPoint = 0;
-                mazeEndingPoint = 9;
+                mazeStartingPoint = 11;
+                mazeEndingPoint = 4;
                 break;
         }
 
