@@ -20,15 +20,15 @@ public class Minotaur {
         switch (difficulty){
             case EASY:
                 graphFile = new In("src/resources/EasyGraph.txt");
-                setBestPathHelper(graphFile,0, 7);//TODO: Files, Ent/Exit.
+                setBestPathHelper(graphFile, 0, 7); //TODO: Files, Ent/Exit.
                 break;
             case MEDIUM:
                 graphFile = new In("src/resources/MediumGraph.txt");
-                setBestPathHelper(graphFile,7, 9);//TODO: Files, Ent/Exit.
+                setBestPathHelper(graphFile, 7, 9); //TODO: Files, Ent/Exit.
                 break;
             case HARD:
-//                graphFile = new In("src/resources/HardGraph.txt");
-//                setBestPathHelper(graphFile,1, 9);//TODO: Files, Ent/Exit.
+                graphFile = new In("src/resources/HardGraph.txt");
+                setBestPathHelper(graphFile, 7, 9); //TODO: Files, Ent/Exit.
                 break;
             default:
                 System.err.println("Graph file not found! check your path and try again!");
@@ -78,7 +78,6 @@ public class Minotaur {
         if (stepsTaken >= bestPath.length-1){
             sb.append("The minotaur is close to the exit! Watch out!");
         }
-
         else
             sb.append("The hungry minotaur slinks around the maze...");
 
