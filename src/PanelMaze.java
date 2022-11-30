@@ -265,7 +265,7 @@ public class PanelMaze extends JPanel {
                         if (Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint) {
                             allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
                         }
-                        //TODO there is a bug somewhere in here..
+
                         if (!thisCellsContent.getCellText().equals(gm.player.nodesVisited.peek())) {
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.

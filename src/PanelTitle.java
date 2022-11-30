@@ -16,7 +16,7 @@ public class PanelTitle extends JPanel {
         setBackground(BACKGROUND_COLOR);
         JLabel minotaurArtLabel = new JLabel();
         minotaurArtLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        minotaurArtLabel.setIcon(new ImageIcon(GameDisplay.class.getResource("/resources/Minotaur.png")));
+        minotaurArtLabel.setIcon(new ImageIcon(GameDisplay.class.getResource("/resources/Minotaur2.png")));
         add(minotaurArtLabel);
     }
 }

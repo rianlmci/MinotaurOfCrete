@@ -28,7 +28,6 @@ public class FontGetter {
             System.err.println(fontFileName + "was not found. Using default serif font instead...");
             font = new Font("serif", Font.PLAIN, 24);
         }
-
         return font;
     }
 

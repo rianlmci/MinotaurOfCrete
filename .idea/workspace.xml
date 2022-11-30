@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="Tweaked doc comments for clarity">
+    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="game over lose">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PanelMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/MediumMazeDisplay.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/MediumMazeDisplay.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelTitle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/MediumGraph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/MediumGraph.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
