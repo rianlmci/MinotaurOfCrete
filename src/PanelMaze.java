@@ -38,10 +38,11 @@ public class PanelMaze extends JPanel {
                 break;
             case MEDIUM:
                 allCellContents = fillGridCells(new In("src/resources/MediumMazeDisplay.txt"));
-                mazeStartingPoint = 0;
-                mazeEndingPoint = 8;
+                mazeStartingPoint = 7;
+                mazeEndingPoint = 9;
                 break;
             case HARD:
+            	// TODO create hard maze 
                 allCellContents = fillGridCells(new In("src/resources/HardMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 9;
@@ -139,24 +140,26 @@ public class PanelMaze extends JPanel {
 
     private GridCellContent[][] fillGridCells(In inputContents) {
     	String[] lines = inputContents.readAllLines();
-    	GridCellContent[][] allCellContents = 
-    			new GridCellContent[lines.length][(lines[0].length()/5)+1];
-
-    	// Testing print
+    	
+    	String[] firstLineList = lines[0].split(",");
+    	
+    	GridCellContent[][] localCellContents = 
+    			new GridCellContent[lines.length][firstLineList.length];
+    	
     	int lineCounter = 0;
     	for (String currentLine : lines) {
-    		int oneCounter = 0;
-    		int fiveCounter = 0;
-    		while (fiveCounter < currentLine.length()) {
-    			char cellContentChar = currentLine.charAt(fiveCounter);
-    			allCellContents[lineCounter][oneCounter] = 
-    					new GridCellContent(Character.toString(cellContentChar));
-    			oneCounter++;
-    			fiveCounter += 5;
+    		
+    		String[] currentLineList = currentLine.split(",");
+    		
+    		int cellCounter = 0;
+    		for (int i = 0; i < currentLineList.length; i++) {
+    			localCellContents[lineCounter][cellCounter] = 
+    					new GridCellContent(currentLineList[i]);
+    			cellCounter++;
     		}
     		lineCounter++;
 		}
-    	return allCellContents;
+    	return localCellContents;
     }
 
     /**

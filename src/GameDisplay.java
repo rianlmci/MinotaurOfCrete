@@ -27,8 +27,8 @@ public class GameDisplay extends JFrame {
 	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
 	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
-	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
-	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.EASY); //TODO Change when mazes are made
+	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
 	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
 
 	// Look and feel of GameDisplay
@@ -98,6 +98,43 @@ public class GameDisplay extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				updateCurrentMaze();
 				cardDeck.show(gameContent, "Easy");
+				mazeDifficulty = MazeDifficulty.EASY;
+				minotaurTextLabel.setVisible(true);
+				panelMenuItems.startButton.setVisible(false);
+				panelMenuItems.easyButton.setVisible(false);
+				panelMenuItems.mediumButton.setVisible(false);
+				panelMenuItems.hardButton.setVisible(false);
+				panelMenuItems.resetButton.setVisible(true);
+				panelMenuItems.undoButton.setVisible(true);
+			}
+		});
+		
+		// Medium button
+		panelMenuItems.mediumButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateCurrentMaze();
+				cardDeck.show(gameContent, "Medium");
+				mazeDifficulty = MazeDifficulty.MEDIUM;
+				minotaurTextLabel.setVisible(true);
+				panelMenuItems.startButton.setVisible(false);
+				panelMenuItems.easyButton.setVisible(false);
+				panelMenuItems.mediumButton.setVisible(false);
+				panelMenuItems.hardButton.setVisible(false);
+				panelMenuItems.resetButton.setVisible(true);
+				panelMenuItems.undoButton.setVisible(true);
+			}
+		});
+		
+		// Easy button
+		panelMenuItems.hardButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateCurrentMaze();
+				cardDeck.show(gameContent, "Hard");
+				mazeDifficulty = MazeDifficulty.HARD;
 				minotaurTextLabel.setVisible(true);
 				panelMenuItems.startButton.setVisible(false);
 				panelMenuItems.easyButton.setVisible(false);
