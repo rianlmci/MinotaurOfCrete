@@ -23,6 +23,7 @@ public class GameDisplay extends JFrame {
 	// Game Screens
 	protected static PanelMenuItems panelMenuItems = new PanelMenuItems();
 	private PanelTitle panelTitle = new PanelTitle();
+	private PanelDifficulty panelDifficulty = new PanelDifficulty(); 
 	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
 	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
@@ -44,6 +45,7 @@ public class GameDisplay extends JFrame {
 		outerContainer.setForeground(FONT_COLOR);
 		// adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
+		gameContent.add(panelDifficulty, "Difficulty");
 		gameContent.add(panelMazeEasy, "Easy");
 		gameContent.add(panelMazeMedium, "Medium");
 		gameContent.add(panelMazeHard, "Hard");
@@ -81,9 +83,26 @@ public class GameDisplay extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				updateCurrentMaze();
+				panelMenuItems.easyButton.setVisible(true);
+				panelMenuItems.mediumButton.setVisible(true);
+				panelMenuItems.hardButton.setVisible(true);
+				panelMenuItems.startButton.setVisible(false);
+//				cardDeck.show(gameContent, "Difficulty");
+			}
+		});
+		
+		// Easy button
+		panelMenuItems.easyButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateCurrentMaze();
 				cardDeck.show(gameContent, "Easy");
 				minotaurTextLabel.setVisible(true);
 				panelMenuItems.startButton.setVisible(false);
+				panelMenuItems.easyButton.setVisible(false);
+				panelMenuItems.mediumButton.setVisible(false);
+				panelMenuItems.hardButton.setVisible(false);
 				panelMenuItems.resetButton.setVisible(true);
 				panelMenuItems.undoButton.setVisible(true);
 			}

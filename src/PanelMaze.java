@@ -30,19 +30,19 @@ public class PanelMaze extends JPanel {
     PanelMaze(MazeDifficulty difficulty){
         gm.minotaur.setBestPath(difficulty);
         setBackground(BACKGROUND_COLOR);
-        switch (difficulty){ //TODO: Real points and paths when maze is made for med + hard!
+        switch (difficulty){ 
             case EASY:
                 allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 7;
                 break;
             case MEDIUM:
-                allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
+                allCellContents = fillGridCells(new In("src/resources/MediumMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 8;
                 break;
             case HARD:
-                allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
+                allCellContents = fillGridCells(new In("src/resources/HardMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 9;
                 break;
