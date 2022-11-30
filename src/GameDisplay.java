@@ -34,7 +34,7 @@ public class GameDisplay extends JFrame {
 	// Look and feel of GameDisplay
 	private final Color FONT_COLOR = Color.WHITE;
 	private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
-
+	
 	public GameDisplay() {
 		setTitle("The Minotaur of Crete");
 		setSize(1500, 1000);
@@ -51,7 +51,7 @@ public class GameDisplay extends JFrame {
 		gameContent.add(panelGameOverWin, "Win");
 		gameContent.add(panelGameOverLose, "Lose");
 		outerContainer.add(gameContent);
-
+		
 		//Look and feel of minotaur label:
 		minotaurTextLabel.setVisible(false);
 		minotaurTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT); //centers the label horizontally
@@ -126,7 +126,7 @@ public class GameDisplay extends JFrame {
 			}
 		});
 		
-		// Easy button
+		// Hard button
 		panelMenuItems.hardButton.addActionListener(new ActionListener() {
 			
 			@Override
