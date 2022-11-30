@@ -256,25 +256,26 @@ public class PanelMaze extends JPanel {
 
                     try {
                         Integer.parseInt(thisButton.getText());
-                            //if player has visited this node, mark it with visited color
-                            if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
-                                allPanels[i][j].getComponent(0).setBackground(VISITED_COLOR);
-                            }
+                        //if player has visited this node, mark it with visited color
+                        if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))) {
+                            allPanels[i][j].getComponent(0).setBackground(VISITED_COLOR);
+                        }
 
-                            //if this cell is the ending point's cell, mark it with the exit color
-                            if (allCellContents[i][j].isVertex() &&
-                                    Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint){
-                                allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
-                            }
-
+                        //if this cell is the ending point's cell, mark it with the exit color
+                        if (Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint) {
+                            allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
+                        }
+                        //TODO there is a bug somewhere in here..
+                        if (!thisCellsContent.getCellText().equals(gm.player.nodesVisited.peek())) {
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.
-                            for (Integer onePoint: thisCellsContent.getAdjacentPoints()) {
+                            for (Integer onePoint : thisCellsContent.getAdjacentPoints()) {
                                 if (thisButton.getBackground() != VISITED_COLOR &&
-                                        onePoint == gm.player.nodesVisited.peek()){
+                                        onePoint == gm.player.nodesVisited.peek()) {
                                     allPanels[i][j].getComponent(0).setEnabled(true);
                                 }
                             }
+                        }
                     }
                     catch (NumberFormatException nfe) {
                     }
