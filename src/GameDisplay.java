@@ -32,7 +32,6 @@ public class GameDisplay extends JFrame {
 	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
 
 	// Look and feel of GameDisplay
-	//private final Font FONT = new Font("System", Font.ITALIC, 20);
 	private final Color FONT_COLOR = Color.WHITE;
 	private final Color BACKGROUND_COLOR = Color.decode("#181A1B"); //hex code decoder, a charcoal color.
 
@@ -212,7 +211,7 @@ public class GameDisplay extends JFrame {
 	}
 
 	/**
-	 * Reset current player and minotaur position and steps taken
+	 * Reset current player and minotaur position and steps taken.
 	 */
 	private void resetCurrentPlayer() {
 		switch (mazeDifficulty) {

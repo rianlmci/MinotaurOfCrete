@@ -32,17 +32,23 @@ public class PanelMaze extends JPanel {
         setBackground(BACKGROUND_COLOR);
         switch (difficulty){ 
             case EASY:
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.EASY;
                 allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 7;
                 break;
             case MEDIUM:
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.MEDIUM;
                 allCellContents = fillGridCells(new In("src/resources/MediumMazeDisplay.txt"));
                 mazeStartingPoint = 7;
                 mazeEndingPoint = 9;
                 break;
             case HARD:
-            	// TODO create hard maze 
+            	// TODO create hard maze
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.HARD;
                 allCellContents = fillGridCells(new In("src/resources/HardMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 9;
@@ -213,7 +219,7 @@ public class PanelMaze extends JPanel {
                                 //check minotaur lose condition
                                 if(gm.checkLoseCondition()){
                                     while (gm.player.nodesVisited.size() > 1){
-                                        gm.player.moveBackward(); ///
+                                        gm.player.moveBackward();
                                     }
                                     gm.minotaur.move(0);
                                     displayGameOver();
