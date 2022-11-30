@@ -30,19 +30,26 @@ public class PanelMaze extends JPanel {
     PanelMaze(MazeDifficulty difficulty){
         gm.minotaur.setBestPath(difficulty);
         setBackground(BACKGROUND_COLOR);
-        switch (difficulty){ //TODO: Real points and paths when maze is made for med + hard!
+        switch (difficulty){ 
             case EASY:
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.EASY;
                 allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 7;
                 break;
             case MEDIUM:
-                allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
-                mazeStartingPoint = 0;
-                mazeEndingPoint = 8;
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.MEDIUM;
+                allCellContents = fillGridCells(new In("src/resources/MediumMazeDisplay.txt"));
+                mazeStartingPoint = 7;
+                mazeEndingPoint = 9;
                 break;
             case HARD:
-                allCellContents = fillGridCells(new In("src/resources/EasyMazeDisplay.txt"));
+            	// TODO create hard maze
+                //TODO: remove when finished all mazes
+                GameDisplay.mazeDifficulty = MazeDifficulty.HARD;
+                allCellContents = fillGridCells(new In("src/resources/HardMazeDisplay.txt"));
                 mazeStartingPoint = 0;
                 mazeEndingPoint = 9;
                 break;
@@ -139,24 +146,26 @@ public class PanelMaze extends JPanel {
 
     private GridCellContent[][] fillGridCells(In inputContents) {
     	String[] lines = inputContents.readAllLines();
-    	GridCellContent[][] allCellContents = 
-    			new GridCellContent[lines.length][(lines[0].length()/5)+1];
-
-    	// Testing print
+    	
+    	String[] firstLineList = lines[0].split(",");
+    	
+    	GridCellContent[][] localCellContents = 
+    			new GridCellContent[lines.length][firstLineList.length];
+    	
     	int lineCounter = 0;
     	for (String currentLine : lines) {
-    		int oneCounter = 0;
-    		int fiveCounter = 0;
-    		while (fiveCounter < currentLine.length()) {
-    			char cellContentChar = currentLine.charAt(fiveCounter);
-    			allCellContents[lineCounter][oneCounter] = 
-    					new GridCellContent(Character.toString(cellContentChar));
-    			oneCounter++;
-    			fiveCounter += 5;
+    		
+    		String[] currentLineList = currentLine.split(",");
+    		
+    		int cellCounter = 0;
+    		for (int i = 0; i < currentLineList.length; i++) {
+    			localCellContents[lineCounter][cellCounter] = 
+    					new GridCellContent(currentLineList[i]);
+    			cellCounter++;
     		}
     		lineCounter++;
 		}
-    	return allCellContents;
+    	return localCellContents;
     }
 
     /**
@@ -210,7 +219,7 @@ public class PanelMaze extends JPanel {
                                 //check minotaur lose condition
                                 if(gm.checkLoseCondition()){
                                     while (gm.player.nodesVisited.size() > 1){
-                                        gm.player.moveBackward(); ///
+                                        gm.player.moveBackward();
                                     }
                                     gm.minotaur.move(0);
                                     displayGameOver();
@@ -247,25 +256,26 @@ public class PanelMaze extends JPanel {
 
                     try {
                         Integer.parseInt(thisButton.getText());
-                            //if player has visited this node, mark it with visited color
-                            if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))){
-                                allPanels[i][j].getComponent(0).setBackground(VISITED_COLOR);
-                            }
+                        //if player has visited this node, mark it with visited color
+                        if (gm.player.hasVisited(Integer.parseInt(thisButton.getText()))) {
+                            allPanels[i][j].getComponent(0).setBackground(VISITED_COLOR);
+                        }
 
-                            //if this cell is the ending point's cell, mark it with the exit color
-                            if (allCellContents[i][j].isVertex() &&
-                                    Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint){
-                                allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
-                            }
-
+                        //if this cell is the ending point's cell, mark it with the exit color
+                        if (Integer.parseInt(allCellContents[i][j].getCellText()) == mazeEndingPoint) {
+                            allPanels[i][j].getComponent(0).setBackground(EXIT_COLOR);
+                        }
+                        //TODO there is a bug somewhere in here..
+                        if (!thisCellsContent.getCellText().equals(gm.player.nodesVisited.peek())) {
                             //if player has not visited this node, and it's adjacent to the last node visited,
                             //then enable the player to click on this node.
-                            for (Integer onePoint: thisCellsContent.getAdjacentPoints()) {
+                            for (Integer onePoint : thisCellsContent.getAdjacentPoints()) {
                                 if (thisButton.getBackground() != VISITED_COLOR &&
-                                        onePoint == gm.player.nodesVisited.peek()){
+                                        onePoint == gm.player.nodesVisited.peek()) {
                                     allPanels[i][j].getComponent(0).setEnabled(true);
                                 }
                             }
+                        }
                     }
                     catch (NumberFormatException nfe) {
                     }

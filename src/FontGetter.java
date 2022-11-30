@@ -16,7 +16,7 @@ public class FontGetter {
      * @return font
      */
     public Font getFontByName(String fontFileName){
-        Font font = null;
+        Font font;
         String completeFilePath = "/resources/fonts/" + fontFileName;
 
         try {

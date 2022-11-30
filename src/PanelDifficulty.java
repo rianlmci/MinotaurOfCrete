@@ -3,57 +3,27 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * The bottom panel which contains all the menu buttons
- * for the game.
+ * Title screen in the GUI.
  * @author Rianna McIntyre
  * @author Wyatt McCurdy
  */
-public class PanelMenuItems extends JPanel {
-    protected JButton startButton;
-    protected JButton undoButton;
-    protected JButton resetButton;
-    protected JButton titleButton;
+public class PanelDifficulty extends JPanel {
     protected JButton easyButton;
     protected JButton mediumButton;
     protected JButton hardButton;
-    PanelMenuItems() {
+    PanelDifficulty(){
         setLayout(new FlowLayout());
         setBackground(null);
         setBorder(new EmptyBorder(20,0,40,0)); //Pseudo padding for menu items
 
-        //startButton
-        startButton = createMenuButton("Get Started!");
-
-        //undoButton
-        undoButton = createMenuButton("Undo");
-        undoButton.setVisible(false);
-
-        //ResetButton
-        resetButton = createMenuButton("Reset");
-        resetButton.setVisible(false);
-
-        //titleButton
-        titleButton = createMenuButton("Return to Title");
-        titleButton.setVisible(false);
-        
-        // will the game be easy, med, hard?
-        easyButton = createMenuButton("Easy");
-        easyButton.setVisible(false);
-        mediumButton = createMenuButton("Medium");
-        mediumButton.setVisible(false);
-        hardButton = createMenuButton("Hard");
-        hardButton.setVisible(false);
-        
-        //adding all the buttons...
-        add(startButton);
-        add(undoButton);
-        add(resetButton);
-        add(titleButton);
+        JButton easyButton = createMenuButton("Easy");
+        JButton mediumButton = createMenuButton("Medium");
+        JButton hardButton = createMenuButton("Hard");
         add(easyButton);
         add(mediumButton);
         add(hardButton);
     }
-
+    
     /**
      * Styler for all buttons in the menu.
      * @param menuButtonText
