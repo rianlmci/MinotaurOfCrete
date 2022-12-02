@@ -23,12 +23,13 @@ public class GameDisplay extends JFrame {
 	// Game Screens
 	protected static PanelMenuItems panelMenuItems = new PanelMenuItems();
 	private PanelTitle panelTitle = new PanelTitle();
+	private PanelInstructions panelInstructions = new PanelInstructions();
 	private PanelDifficulty panelDifficulty = new PanelDifficulty(); 
 	private PanelGameOverWin panelGameOverWin = new PanelGameOverWin();
 	private PanelGameOverLose panelGameOverLose = new PanelGameOverLose();
 	private PanelMaze panelMazeEasy = new PanelMaze(MazeDifficulty.EASY);
 	private PanelMaze panelMazeMedium = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
-	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.MEDIUM); //TODO Change when mazes are made
+	private PanelMaze panelMazeHard = new PanelMaze(MazeDifficulty.HARD); //TODO Change when mazes are made
 	private JScrollPane scrollableArea = new JScrollPane(outerContainer); //makes whole game scrollable when resized
 
 	// Look and feel of GameDisplay
@@ -44,6 +45,7 @@ public class GameDisplay extends JFrame {
 		outerContainer.setForeground(FONT_COLOR);
 		// adds each card and their aliases to the game content panel
 		gameContent.add(panelTitle, "Title");
+		gameContent.add(panelInstructions, "Instructions");
 		gameContent.add(panelDifficulty, "Difficulty");
 		gameContent.add(panelMazeEasy, "Easy");
 		gameContent.add(panelMazeMedium, "Medium");
@@ -82,6 +84,7 @@ public class GameDisplay extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				updateCurrentMaze();
+				cardDeck.show(gameContent, "Instructions");
 				panelMenuItems.easyButton.setVisible(true);
 				panelMenuItems.mediumButton.setVisible(true);
 				panelMenuItems.hardButton.setVisible(true);
