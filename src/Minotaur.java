@@ -28,7 +28,7 @@ public class Minotaur {
                 break;
             case HARD:
                 graphFile = new In("src/resources/HardGraph.txt");
-                setBestPathHelper(graphFile, 7, 9); //TODO: Files, Ent/Exit.
+                setBestPathHelper(graphFile, 11, 4); //TODO: Files, Ent/Exit.
                 break;
             default:
                 System.err.println("Graph file not found! check your path and try again!");
