@@ -15,6 +15,7 @@ public class PanelGameOverLose extends JPanel {
         gameOverFont = gameOverFont.deriveFont(Font.BOLD,30);
     	setBackground(BACKGROUND_COLOR);
         setLayout(new BorderLayout(0, 0));
+        
         JLabel minotaurWinsLabel = new JLabel("The Minotaur Ate You! :{");
         minotaurWinsLabel.setForeground(FONT_COLOR);
         minotaurWinsLabel.setFont(gameOverFont);
