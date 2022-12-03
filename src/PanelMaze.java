@@ -68,6 +68,9 @@ public class PanelMaze extends JPanel {
         }
     }
 
+    /*
+     * Updates screen text to communicate the position of the Minotaur
+     */
     public void updateMinotaurTextLabel(){
         GameDisplay.minotaurTextLabel.setText(gm.minotaur.getMinotaurText());
     }
@@ -102,48 +105,9 @@ public class PanelMaze extends JPanel {
         GameDisplay.cardDeck.show(GameDisplay.gameContent, "Win");
     }
 
-   /*
-   * = = = = = Graph as Text = = = = =
-   *       0    1    2    3    4    5    6  [column k]
-   * 0     1    -    0   " "   7    -    6
-   * 1     |   " "   |    /    |    /    |
-   * 2     2   " "   3    -    4   " "   5
-   * [row i] " " is whitespace!
-   */
-
-  //TODO: Initialize with a text file based on difficulty?
-    //    GridCellContent [][] allCellContents = {
-    //            /*Row 0*/{
-    //            new GridCellContent("1"), /*[0][0]*/
-    //            new GridCellContent("-"), /*[0][1]*/
-    //            new GridCellContent("0"), /*[0][2]*/
-    //            new GridCellContent(" "), /*[0][3]*/
-    //            new GridCellContent("7"), /*[0][4]*/
-    //            new GridCellContent("-"), /*[0][5]*/
-    //            new GridCellContent("6"), /*[0][6]*/
-    //            },
-    //
-    //            /*Row 1*/{
-    //            new GridCellContent("|"), /*[1][0]*/
-    //            new GridCellContent(" "), /*[1][1]*/
-    //            new GridCellContent("|"), /*[1][2]*/
-    //            new GridCellContent("/"), /*[1][3]*/
-    //            new GridCellContent("|"), /*[1][4]*/
-    //            new GridCellContent("/"), /*[1][5]*/
-    //            new GridCellContent("|"), /*[1][6]*/
-    //            },
-    //
-    //            /*Row 2*/{
-    //            new GridCellContent("2"), /*[2][0]*/
-    //            new GridCellContent(" "), /*[2][1]*/
-    //            new GridCellContent("3"), /*[2][2]*/
-    //            new GridCellContent("-"), /*[2][3]*/
-    //            new GridCellContent("4"), /*[2][4]*/
-    //            new GridCellContent(" "), /*[2][5]*/
-    //            new GridCellContent("5"), /*[2][6]*/
-    //            }
-    //    };
-
+    /*
+     * Constructs a game board of grid cells based on an input text file
+     */
     private GridCellContent[][] fillGridCells(In inputContents) {
     	String[] lines = inputContents.readAllLines();
     	

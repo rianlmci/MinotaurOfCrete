@@ -40,10 +40,16 @@ public class GridCellContent {
         }
     }
 
+    /*
+     * Return text for this cell
+     */
     public String getCellText(){
         return cellText;
     }
 
+    /*
+     * Return true if this cell is a vertex; else return false
+     */
     public Boolean isVertex(){
         return isVertex;
     }
@@ -73,6 +79,9 @@ public class GridCellContent {
         }
     }
 
+    /*
+     * Return adjacent points for a grid cell
+     */
     public Iterable<Integer> getAdjacentPoints() {
         return adjacentPoints;
     }
