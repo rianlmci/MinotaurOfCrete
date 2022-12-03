@@ -1,7 +1,9 @@
 import java.awt.*;
 
 /**
- * A game master which understands the rules and gives feedback about the game's pieces.
+ * A game master which understands the rules and gives feedback about the game's
+ * pieces.
+ * 
  * @author Rianna McIntyre
  * @author Wyatt McCurdy
  */
@@ -11,15 +13,15 @@ public class GameMaster {
 	protected static GameDisplay gameDisplay;
 
 	/**
-	 * @return if the minotaur has reached the end of the maze.
-	 * if he reaches the end, the player loses the game.
+	 * @return if the minotaur has reached the end of the maze. if he reaches the
+	 *         end, the player loses the game.
 	 */
 	public boolean checkLoseCondition() {
 		return minotaur.hasReachedEnd();
 	}
 
-    // = = = = = TEST CLIENT = = = = = //
-    public static void main(String[] args) {
+	// = = = = = TEST CLIENT = = = = = //
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -30,5 +32,5 @@ public class GameMaster {
 				}
 			}
 		});
-    }
+	}
 }

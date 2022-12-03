@@ -3,79 +3,81 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * The bottom panel which contains all the menu buttons
- * for the game.
+ * The bottom panel which contains all the menu buttons for the game.
+ * 
  * @author Rianna McIntyre
  * @author Wyatt McCurdy
  */
 public class PanelMenuItems extends JPanel {
-    protected JButton startButton;
-    protected JButton undoButton;
-    protected JButton resetButton;
-    protected JButton titleButton;
-    protected JButton easyButton;
-    protected JButton mediumButton;
-    protected JButton hardButton;
-    PanelMenuItems() {
-        setLayout(new FlowLayout());
-        setBackground(null);
-        setBorder(new EmptyBorder(20,0,40,0)); //Pseudo padding for menu items
+	protected JButton startButton;
+	protected JButton undoButton;
+	protected JButton resetButton;
+	protected JButton titleButton;
+	protected JButton easyButton;
+	protected JButton mediumButton;
+	protected JButton hardButton;
 
-        //startButton
-        startButton = createMenuButton("Get Started!");
+	PanelMenuItems() {
+		setLayout(new FlowLayout());
+		setBackground(null);
+		setBorder(new EmptyBorder(20, 0, 40, 0)); // Pseudo padding for menu items
 
-        //undoButton
-        undoButton = createMenuButton("Undo");
-        undoButton.setVisible(false);
+		// startButton
+		startButton = createMenuButton("Get Started!");
 
-        //ResetButton
-        resetButton = createMenuButton("Reset");
-        resetButton.setVisible(false);
+		// undoButton
+		undoButton = createMenuButton("Undo");
+		undoButton.setVisible(false);
 
-        //titleButton
-        titleButton = createMenuButton("Return to Title");
-        titleButton.setVisible(false);
-        
-        // will the game be easy, med, hard?
-        easyButton = createMenuButton("Easy");
-        easyButton.setVisible(false);
-        mediumButton = createMenuButton("Medium");
-        mediumButton.setVisible(false);
-        hardButton = createMenuButton("Hard");
-        hardButton.setVisible(false);
-        
-        //adding all the buttons...
-        add(startButton);
-        add(undoButton);
-        add(resetButton);
-        add(titleButton);
-        add(easyButton);
-        add(mediumButton);
-        add(hardButton);
-    }
+		// ResetButton
+		resetButton = createMenuButton("Reset");
+		resetButton.setVisible(false);
 
-    /**
-     * Styler for all buttons in the menu.
-     * @param menuButtonText
-     * @return a button that's styled for the game menu.
-     */
-    private JButton createMenuButton(String menuButtonText) {
-        //look and feel of buttons:
-        FontGetter fontGetter = new FontGetter();
-        Font buttonFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
-        buttonFont = buttonFont.deriveFont(Font.PLAIN,25);
-        Color fontColor = Color.WHITE;
-        //Color fontColor = new Color(255, 128, 255); //magenta
-        Color backgroundColor = Color.DARK_GRAY;
+		// titleButton
+		titleButton = createMenuButton("Return to Title");
+		titleButton.setVisible(false);
 
-        //sets the style of the buttons
-        JButton button = new JButton(menuButtonText);
-        button.setFocusable(false);
-        button.setFont(buttonFont);
-        button.setForeground(fontColor);
-        button.setBackground(backgroundColor);
+		// will the game be easy, med, hard?
+		easyButton = createMenuButton("Easy");
+		easyButton.setVisible(false);
+		mediumButton = createMenuButton("Medium");
+		mediumButton.setVisible(false);
+		hardButton = createMenuButton("Hard");
+		hardButton.setVisible(false);
+
+		// adding all the buttons...
+		add(startButton);
+		add(undoButton);
+		add(resetButton);
+		add(titleButton);
+		add(easyButton);
+		add(mediumButton);
+		add(hardButton);
+	}
+
+	/**
+	 * Styler for all buttons in the menu.
+	 * 
+	 * @param menuButtonText
+	 * @return a button that's styled for the game menu.
+	 */
+	private JButton createMenuButton(String menuButtonText) {
+		// look and feel of buttons:
+		FontGetter fontGetter = new FontGetter();
+		Font buttonFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+		buttonFont = buttonFont.deriveFont(Font.PLAIN, 25);
+		Color fontColor = Color.WHITE;
+		// Color fontColor = new Color(255, 128, 255); //magenta
+		Color backgroundColor = Color.DARK_GRAY;
+
+		// sets the style of the buttons
+		JButton button = new JButton(menuButtonText);
 		button.setFocusable(false);
-		button.setBorder(new EmptyBorder(10,10,10,10)); //Pseudo-margin for button
-        return button;
-    }
+		button.setFont(buttonFont);
+		button.setForeground(fontColor);
+		button.setBackground(backgroundColor);
+		button.setFocusable(false);
+		button.setBorder(new EmptyBorder(10, 10, 10, 10)); // Pseudo-margin for button
+		return button;
+	}
 }

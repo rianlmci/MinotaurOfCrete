@@ -2,6 +2,7 @@ import edu.princeton.cs.algs4.Stack;
 
 /**
  * Player who explores the maze and tries to escape it!
+ * 
  * @author Rianna McIntyre
  * @author Wyatt McCurdy
  */
@@ -27,7 +28,7 @@ public class Player {
 	 */
 	public void moveForward(Integer nextNode) {
 		nodesVisited.push(nextNode);
-		stepsTaken = nodesVisited.size()-1; //to account for starting point
+		stepsTaken = nodesVisited.size() - 1; // to account for starting point
 	}
 
 	/**
@@ -39,6 +40,6 @@ public class Player {
 			return;
 		}
 		nodesVisited.pop();
-		stepsTaken = nodesVisited.size()-1; //to account for starting point
+		stepsTaken = nodesVisited.size() - 1; // to account for starting point
 	}
 }
