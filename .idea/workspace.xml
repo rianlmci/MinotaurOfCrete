@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="* Fixed adjacency bug &#10;&#10;* changed some spacing in classes&#10;&#10;* changed minotaur art to small for visibility on laptops.">
+    <list default="true" id="27632435-d2e0-4fe6-82d0-00df1c3a3ed5" name="Changes" comment="Added images, started to style the instructions page">
+      <change afterPath="$PROJECT_DIR$/src/resources/Minotaur_Rules_Scaled_by_Superkiak.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Minotitle_Scaled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/Minotitle_Scaled_Larger.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Minotaur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PanelMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/HardGraph.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/HardGraph.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FontGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontGetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelInstructions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelInstructions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PanelTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PanelTitle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +26,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,11 +37,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ri\IdeaProjects\MinotaurOfCrete\src\resources\fonts" />
@@ -194,6 +193,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

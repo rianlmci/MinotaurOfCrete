@@ -1,5 +1,11 @@
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
+
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 /**
@@ -11,8 +17,18 @@ public class PanelInstructions extends JPanel {
 	private final Color BACKGROUND_COLOR = Color.decode("#181A1B");
 
 	public PanelInstructions() {
+		setLayout(new GridLayout());
 		setBackground(BACKGROUND_COLOR);
-		JLabel explanationLabel = new JLabel("<html>"
+		FontGetter fontGetter = new FontGetter();
+	    Font labelFont = fontGetter.getFontByName("VCR_OSD_MONO_1.001.ttf");
+	    labelFont = labelFont.deriveFont(Font.PLAIN,25);
+	    //solution below from: https://stackoverflow.com/questions/7265178/jlabel-html-text-ignores-setfont
+	    GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(labelFont);
+		JLabel explanationLabel = new JLabel();
+		explanationLabel.setBorder(new EmptyBorder(10,30,10,30)); //pseudo margin
+		explanationLabel.setForeground(Color.WHITE);
+		explanationLabel.setFont(labelFont);
+		explanationLabel.setText("<html>"
 				+ "<h1>The Minotaur of Crete is a maze game based on a Greek Myth<h1/><br>"
 				+ "You play Theseus, a guy who goes into a maze to fight a bull-man (Minotaur)<br>"
 				+ "The Minotaur was scarier than you thought, so now you have to run!<br>" + "How the game works: <br>"
@@ -26,7 +42,7 @@ public class PanelInstructions extends JPanel {
 				+ "		6. If you want to backtrack, you can press the 'Undo' button. This will cause the Minotaur to backtrack too.<br>"
 				+ "		7. There are three difficulty settings below. Choose one.<br>" + "<br>"
 				+ "Get to the end of the maze and save your bacon! Otherwise, you're toast." + "<html/>");
-		explanationLabel.setForeground(new Color(255, 255, 255));
+		explanationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(explanationLabel);
 	}
 }
